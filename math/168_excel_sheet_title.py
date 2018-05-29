@@ -12,4 +12,9 @@ class Solution:
             res += slist[(n-1)%26]
             n = (n-1)//26
         return res[::-1]
+# Input: 28
+# Output: "AB"
+
+# Input: 701
+# Output: "ZY"
         
