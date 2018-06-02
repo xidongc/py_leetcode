@@ -41,7 +41,7 @@ class Solution(object):
 # Solution 2 by Xidong:
 
 class Solution(object):
-    
+
     def countNodes(self, root):
         """
         :type root: TreeNode
