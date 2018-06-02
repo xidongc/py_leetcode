@@ -1,4 +1,4 @@
-# Hui Jing's Solution:
+# Hui Jiang's Solution:
 
 class Solution(object):
     def arrayPairSum(self, nums):
