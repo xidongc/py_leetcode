@@ -32,4 +32,3 @@ class Solution:
         if head2:
             p.next = head2
         return head.next
-    
