@@ -1,11 +1,14 @@
 class Solution(object):
-    def arrayPairSum(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        nums.sort()
-        sum(nums[0::2])
+    def __init__(self, a):
+        self.a = a
+
+s = Solution(1)
+b = s
+b.a = 2
+print(s.a)
+print(id(s))
+print(id(b))
+
 
 
 
