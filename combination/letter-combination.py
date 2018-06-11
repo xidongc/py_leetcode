@@ -34,3 +34,24 @@ class Solution(object):
             curr.append(l)
             self.dfs(curr, k+1, n, letters)
             curr.pop()
+            
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if not digits or len(digits) == 0:
+            return []
+        Solution.teleMap = [0,1,"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+        Solution.res = []
+        self.helper(digits,0,"")
+        return Solution.res
+    def helper(self,digits,pos,tempStr):
+        if len(tempStr) == len(digits):
+            Solution.res.append(tempStr)
+            return 
+        for c in Solution.teleMap[int(digits[pos])]:
+            self.helper(digits,pos+1,tempStr + c)
+
+        
