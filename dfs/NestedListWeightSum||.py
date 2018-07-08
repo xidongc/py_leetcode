@@ -59,6 +59,7 @@ class Solution(object):
             weighted += unweighted
             nestedList = tempList
         return weighted
+  # 366 题 自底而上
   # Each integer get added one extra time for the mere existence of each one level under it.      
   # Given the list [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)
             
