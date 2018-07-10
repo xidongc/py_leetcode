@@ -34,3 +34,4 @@ class Solution:
         [2,1,3],
         [1,null,2,null,3]
       ]
+    # 每层每种结构新建一个treeNode root存储相应结构
