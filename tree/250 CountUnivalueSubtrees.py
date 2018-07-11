@@ -22,4 +22,13 @@ class Solution(object):
             return True
         return root.val == value and self.dfs(root.left, value) and self.dfs(root.right, value)
 # 和pathsum||| 一个道理
-# 如何优化？
+# # 如何优化？
+# Input:  root = [5,1,5,5,5,null,5]
+#
+#               5
+#              / \
+#             1   5
+#            / \   \
+#           5   5   5
+#
+# Output: 4 : 5, 5, 5, 5-5
