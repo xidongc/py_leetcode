@@ -4,6 +4,7 @@ class TrieNode:
         Initialize your data structure here.
         """
         self.children = {}
+        # Whether this node is the end of this word
         self.formWord = False
 class Trie:
 
