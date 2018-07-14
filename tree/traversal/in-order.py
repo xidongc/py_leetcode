@@ -1,11 +1,14 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution:
+
+    # recursive
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -25,3 +28,7 @@ class Solution:
 
         helper(root)
         return ret
+
+
+
+

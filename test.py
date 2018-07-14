@@ -1,64 +1,39 @@
-class Node(object):
-    def __init__(self, val):
-        self.val = val
-        self.next = None
+import queue
 
 
-class Sol(object):
-    def __init__(self, ls):
-        self.root = h = Node(ls[0])
-        self.list = [self.root]
-        for l in ls[1:]:
-            tmp = Node(l)
-            h.next = tmp
-            self.list.append(tmp)
-            h = h.next
-
-    def prt(self, root):
-        while root:
-            print(root.val)
-            root = root.next
-
-    def getlist(self):
-        for l in self.list:
-            print(l.val)
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
-def reverse_official(from_node, to_node):
-    if from_node is to_node:
-        return None
-    x = from_node
-    y = from_node.next
-    while True:
-        z = y.next
-        y.next = x
-        x = y
-        y = z
-        if x is to_node:
-            break
-    return x
+class Tree(object):
+
+    def createTree(self, list):
+        root = TreeNode(list.pop(0))
+        q = queue.Queue()
+        q.put(root)
+        while list and not q.empty():
+            current = q.get()
+            if len(list) >=2:
+                current.left = TreeNode(list.pop(0))
+                current.right = TreeNode(list.pop(0))
+            else:
+                current.left = TreeNode(list.pop(0))
+            q.put(current.left)
+            q.put(current.right)
+        return root
+
+    def showTree(self, root):
+        if not root:
+            return
+        print(root.val)
+        self.showTree(root.left)
+        self.showTree(root.right)
 
 
-def get_reverse(from_node, to_node):
-    dummy = Node(-1)
-    dummy.next = from_node
-
-    cur = dummy.next
-    post = Node(-1)
-    while post is not to_node:
-        post = cur.next
-        cur.next = post.next
-        post.next = dummy.next
-        dummy.next = post
-
-    del dummy, cur, post
-
-    return to_node
-
-
-s = Sol([1, 2, 3, 4, 5])
-print("Test", s.list[4].val)
-node = get_reverse(s.list[0], s.list[4])
-node = get_reverse(s.list[4], s.list[0])
-node = reverse_official(s.list[0], s.list[4])
-s.prt(node)
+l = [1,2,3,4,5,6,7,8]
+t = Tree()
+root = t.createTree(l)
+a = t.in_order_traveral(root)

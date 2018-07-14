@@ -24,7 +24,7 @@ class BloomFilter(object):
         return result
 
     def get_positions(self, addr):
-        # Get points positions in bit vector.
+        # Get points positions in segment tree vector.
         point1 = mmh3.hash(addr, 41) % BIT_SIZE
         point2 = mmh3.hash(addr, 42) % BIT_SIZE
         point3 = mmh3.hash(addr, 43) % BIT_SIZE
