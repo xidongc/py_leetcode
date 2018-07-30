@@ -14,7 +14,7 @@ class Solution(object):
             minValue = min(minValue,p[0])
             maxValue = max(maxValue, p[0])
             resSet.add((p[0],p[1]))
-        # 
+        #
         line = minValue + maxValue
 
         for p in points:
