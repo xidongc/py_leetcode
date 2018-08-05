@@ -1,3 +1,5 @@
+# Hui Jiang's Solution:
+
 class Solution(object):
     def arrayPairSum(self, nums):
         """
@@ -11,5 +13,17 @@ class Solution(object):
         for i in range(0,len(nums)-1,2):
             sum += min(nums[i],nums[i+1])
         return sum
+
+
+# Xidong's Solution:
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        return sum(nums[0::2])
             
         
