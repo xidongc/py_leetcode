@@ -28,3 +28,18 @@ class Solution:
         root.left = self.buildTree(left_tree_in, left_tree_post)
         root.right = self.buildTree(right_tree_in, right_tree_post)
         return root
+
+
+class Solution(object):
+    def buildTree(self,  inorder, postorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if inorder:
+            root = TreeNode(postorder.pop())
+            inPos = inorder.index(root.val)
+            root.right = self.buildTree(inorder[inPos + 1:],postorder)
+            root.left = self.buildTree(inorder[:inPos],postorder)
+            return root
