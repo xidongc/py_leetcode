@@ -29,7 +29,6 @@ class Solution:
         root.right = self.buildTree(right_tree_in, right_tree_post)
         return root
 
-
 class Solution(object):
     def buildTree(self,  inorder, postorder):
         """
