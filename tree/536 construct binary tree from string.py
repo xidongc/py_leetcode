@@ -1,4 +1,5 @@
 # Definition for a binary tree node.
+# ()()()()(((())))分不开用stack，分的开就分块
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
