@@ -25,5 +25,5 @@ class Solution(object):
         
 # sum(iterable including list, tuple, set, without [] is fine)
 # sum([]) = 0?
-Input: [[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], 1
+Input: [[1, 5, [2, 3]], [2, 3, []], [3, 3, []]]
 Output: 11
