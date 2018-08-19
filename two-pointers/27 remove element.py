@@ -1,5 +1,7 @@
 #swap head and tail
 #edge case 2222
+
+
 class Solution(object):
     def removeElement(self, nums, val):
         """
