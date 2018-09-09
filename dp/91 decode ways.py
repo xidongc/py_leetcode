@@ -12,8 +12,8 @@ class Solution(object):
         for i in range(2,len(s) + 1):
             curSingleDigit = int(s[i-1])
             curTwoDigit = int(s[i-2:i])
-            if not curSingleDigit and curTwoDigit > 26:
-                return 0
+            # if not curSingleDigit and curTwoDigit > 26:
+            #     return 0
             if curSingleDigit:
                 dp[i] += dp[i - 1]
             if curTwoDigit > 9 and curTwoDigit < 27:
