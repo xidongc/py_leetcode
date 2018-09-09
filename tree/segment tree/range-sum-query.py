@@ -14,7 +14,7 @@ class NumArray(object):
         initialize your data structure here.
         :type nums: List[int]
         """
-        #helper function to create the tree from input array
+        #helper function to create the tree from input stack
         def createTree(nums, l, r):
 
             #base case
