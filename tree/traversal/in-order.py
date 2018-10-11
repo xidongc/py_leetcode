@@ -14,20 +14,26 @@ class Solution:
         :type root: TreeNode
         :rtype: List[int]
         """
-        ret = []
         if not root:
-            return ret
+            return
+        self.inorderTraversal(root.left)
+        print(self.root)
 
-        def helper(root):
-            if root is not None:
-                helper(root.left)
-                ret.append(root.val)
-                helper(root.right)
-            else:
-                return
-
-        helper(root)
-        return ret
+        self.inorderTraversal(root.right)
+        # ret = []
+        # if not root:
+        #     return ret
+        #
+        # def helper(root):
+        #     if root is not None:
+        #         helper(root.left)
+        #         ret.append(root.val)
+        #         helper(root.right)
+        #     else:
+        #         return
+        #
+        # helper(root)
+        # return ret
 
 
 
