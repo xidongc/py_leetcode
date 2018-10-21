@@ -5,7 +5,7 @@
 #         self.left = None
 #         self.right = None
 
-
+# cxd
 class Solution(object):
 
     def levelOrder(self, root):
@@ -30,5 +30,26 @@ class Solution(object):
         ret[level].append(root.val)
         self.traversal(root.left, level+1, ret)
         self.traversal(root.right, level+1, ret)
+# lmf
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        res = []
+        if not root:
+            return res
+        queue = [root]
+        while queue:
+            length = len(queue)
+            tmpList = []
+            for i in range(length):
+                node = queue.pop(0)
+                tmpList.append(node.val)
+                if node.left: queue.append(node.left)
+                if node.right: queue.append(node.right)
+            res.append(tmpList)
+        return res
 
 
