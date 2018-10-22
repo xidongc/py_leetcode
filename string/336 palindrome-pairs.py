@@ -40,7 +40,36 @@ class Solution(object):
         #用set去重
         # set 不能存可变对象故这里只存tuple
         return list(res)
-s = Solution()
-print(s.palindromePairs(["s"]))
+# s = Solution()
+# print(s.palindromePairs(["s"])
 
-#
+class Solution(object):
+    def palindromePairs(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
+        wordDict = {word: num for num, word in enumerate(words)}
+        res = set()
+
+
+        def isPalindrome(word):
+            return word == word[::-1]
+
+
+        for word in words:
+            if isPalindrome(word) and "" in wordDict and wordDict[word] != wordDict[""]:
+                res |= {(wordDict[word], wordDict[""])}
+                res |= {(wordDict[""], wordDict[word])}
+        for word in words:
+            if word[::-1] in wordDict and wordDict[word] != wordDict[word[::-1]]:
+                res |= {(wordDict[word], wordDict[word[::-1]])}
+        for word in words:
+            for i in range(1, len(word)):
+                left, right = word[:i], word[i:]
+                rleft, rright = left[::-1], right[::-1]
+                if isPalindrome(left) and rright in wordDict:
+                    res |= {(wordDict[rright], wordDict[word])}
+                if isPalindrome(right) and rleft in wordDict:
+                    res |= {(wordDict[word], wordDict[rleft])}
+        return [a for a in res]
