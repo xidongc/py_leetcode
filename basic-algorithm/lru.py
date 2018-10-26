@@ -6,6 +6,7 @@ class LRUCache:
         self.capacity = capacity
         self.cache = collections.OrderedDict()
 
+
     def get(self, key):
         try:
             value = self.cache.pop(key)
@@ -18,6 +19,8 @@ class LRUCache:
         try:
             self.cache.pop(key)
         except KeyError:
+            # The pairs are returned in LIFO order if last is true or FIFO order if false.
+            # if key not exists, check current length
             if len(self.cache) >= self.capacity:
                 self.cache.popitem(last=False)
         self.cache[key] = value

@@ -43,7 +43,7 @@ class Solution(object):
         """
         if not digits or len(digits) == 0:
             return []
-        Solution.teleMap = [0,1,"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]
+        Solution.teleMap = {'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}
         Solution.res = []
         self.helper(digits,0,"")
         return Solution.res
@@ -51,7 +51,26 @@ class Solution(object):
         if len(tempStr) == len(digits):
             Solution.res.append(tempStr)
             return 
-        for c in Solution.teleMap[int(digits[pos])]:
+        for c in Solution.teleMap[digits[pos]]:
             self.helper(digits,pos+1,tempStr + c)
+
+#             投机取巧
+class Solution(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        dict = {'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}
+        resList = ['']
+        if not digits:
+            return resList
+        for digit in digits:
+            tmpList = []
+            for tmp in resList:
+                for letter in dict[digit]:
+                    tmpList.append(tmp+letter)
+            resList = tmpList
+        return resLis
 
         

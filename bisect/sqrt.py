@@ -7,6 +7,7 @@ class Solution(object):
         """
         if x == 0:
             return 0
+        # the start should be 0 since no one's sqrt is 0 except for 0
         start = 1
         end = x
 
