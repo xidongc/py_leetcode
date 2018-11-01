@@ -52,7 +52,16 @@ class Solution(object):
         for _ in range(k):
             print(heapq.heappop(l))
 
-
+# lmf ->collections.Counter().most_common()
+import collections
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        return [k for k,v in collections.Counter(nums).most_common(k)]
 s = Solution()
 nums = [2,3,4,1,4,0,4,-1,-2,-1]
 k = 2

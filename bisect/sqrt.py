@@ -1,5 +1,4 @@
 class Solution(object):
-
     def mySqrt(self, x):
         """
         :type x: int
@@ -21,3 +20,21 @@ class Solution(object):
                 return mid
 
         return start
+
+    # 对小数也有处理的case
+    def sqrt(self,x):
+        if x >= 1:
+            start,end = 1,x
+        else:
+            start,end = x,1
+        #     almost no differce?
+        while end - start > 1e-10:
+            mid = (start+end)/2
+            if mid * mid < x:
+                start = mid
+            else:
+                end = mid
+        return round(start,2)
+s = Solution()
+print(s.sqrt(1/4))
+print(s.sqrt(4))

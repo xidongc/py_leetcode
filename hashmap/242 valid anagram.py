@@ -18,3 +18,13 @@ class Solution(object):
             else:
                 tDict[char] += 1
         return len(s) == len(t)
+
+#    暴力解法
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return collections.Counter(s) == collections.Counter(t)

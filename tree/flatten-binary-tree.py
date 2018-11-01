@@ -29,3 +29,40 @@ class Solution:
                 curr.pop()
 
         dfs(root)
+
+# preorder traverse version
+class Solution(object):
+    def flatten(self, root):
+        """
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
+        """
+        nodeList = []
+        def dfs(root):
+            if not root:
+                return
+            nodeList.append(root)
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        for i in range(1,len(nodeList)):
+            nodeList[i-1].left = None
+            nodeList[i-1].right = nodeList[i]
+
+# dfs version(quicker) reverse preorder traversal
+class Solution(object):
+    def flatten(self, root):
+        """
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
+        """
+        self.prev = None
+        def dfs(root):
+            if not root:
+                return
+            dfs(root.right)
+            dfs(root.left)
+            root.right = self.prev
+            root.left = None
+            self.prev = root
+        dfs(root)

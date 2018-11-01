@@ -1,3 +1,6 @@
+import collections
+
+
 class Solution(object):
     def wordBreak(self, s, wordDict):
         """
@@ -5,31 +8,28 @@ class Solution(object):
         :type wordDict: List[str]
         :rtype: List[str]
         """
-        if not s:
-            return []
-        Solution.res = []
-        self.backtrack(s, wordDict, 0, "")
-        return Solution.res
+        sDict = collections.defaultdict(list)
 
-    def backtrack(self, s,  wordDict, start, tempStr):
+        def dfs(s):
+            if not s:
+                return [None]
+            if s in sDict:
+                return sDict[s]
+            res = []
+            for word in wordDict:
+                n = len(word)
+                if s[:n] == word:
+                    for tmpStr in dfs(s[n:]):
+                        if tmpStr:
+                            res.append(word + ' ' + tmpStr)
+                        else:
+                            res.append(word)
+            sDict[s] = res
+            return res
 
-        for i in range(start, len(s)):
-            if s[start : i + 1] not in wordDict or not self.hasWord(wordDict, s[i + 1:]):
-                continue
-            else:
-                if i == len(s) - 1:
+        return dfs(s)
 
-                    Solution.res.append(tempStr + s[start:])
-                    return
-                else:
-                    self.backtrack(s, wordDict, i + 1, tempStr + s[start : i + 1] + " ")
-    def hasWord(self, wordDict, string):
-        # pineapple or catdog
-        for i in range(len(string)):
-            if string[i:] in wordDict:
-                return True
-        return False
-# Backtrack
-# 不管了就这样吧
+
+
 s = Solution()
 print(s.wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]))

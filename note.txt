@@ -1,0 +1,121 @@
+1. collections.Counter(string/list), inherits the functions of dict
+   结果按照频率倒序排序
+   collections.Counter(iterable).most_common(n)->返回一个top n list（降序）:
+      [('a', 5), ('r', 2), ('b', 2)]
+      for k,v in [('a', 5), ('r', 2), ('b', 2)]: blahblah
+
+2. del()
+
+3. isdigit(), only integers are, '0.3' or '13 45' are not
+
+4. bisect
+   bisect.bisect_left: returns the leftmost place that can be inserted
+   bisect .bisect_right: returns the rightmost place, = bisect.bisect
+
+5. 元素删除
+   #list
+   list.remove(element)->get ValueError is this element not in the list
+   list.pop(index)->get IndexError if index out of range
+   del list[index]/ del list[index:endindex) get IndexError
+   NOT!!!!!!!lista - listb
+   #dict
+   del dict[element]
+   #set
+   set.remove(element)->KeyError
+   set,discard(element)->No Error
+   set.pop()->remove any arbitrary element, Key Error
+   seta - setb
+
+6. 元素插入
+   #list
+   list.append(element)
+   list.insert(index,element)
+   list.extend(elements)
+   lista + listb
+   #set
+   set.add(element)
+   NOT!!!!!!!seta + setb
+
+
+7. 元素查找
+   #string
+   string.find(substring)-> index/-1
+   stirng.index(substring)-> index/Error
+   stirng.startswith(substring) -> index
+   #list
+   list只有index，和string一致
+
+8. set
+   只能寸不可变例如tuple
+   a |= b union
+   a &= b intersection
+   a -= b deduction
+   seta.update(setb), 把setb里的元素放入seta中
+
+9. tuple(immutable)
+   单个元素写成(num,)
+
+10.深浅拷贝
+   好像正常都是深拷贝，例如list, func(list.pop()) or something, will change this list
+   浅拷贝：like res.append(tmpList(:))
+
+11.小函数
+   #map
+   num = int, list(map(int,str(num))),因为map（左，iterable）
+   #join
+   list of int:num, int(''.join(num))
+   ''.join(list),list of string可以，list of int不行，必须用map(str,num)
+   #zip
+   zip(iterable):
+      zip([a,b],c) 可用 for((n1,n2),n3 in zip([a,b],c))取出
+
+12.string(immutable)
+   no sth like string[i] = 'a'
+
+13.itertools
+   itertools.permutation([1,2,3],2):
+      (1,2),(1,3),(2,1),(2,3),(3,1),(3,2)
+   itertools.combinations([1,2,3],2):
+      (1,2),(1,3),(2,3)
+   itertools.chain(*iterables):
+       return iterators NOT LIST
+       chain('ABC', 'DEF') --> A B C D E F
+       chain(*list)
+
+       list = [[[1,2],[5,6]],[[1,3]],[[4,10]]]   sorted(chain(*list))->[[1, 2], [1, 3], [4, 10], [5, 6]]
+       list = [[1,2],[5,6],[1,3],[4,10]]    sorted(chain(*list))->[1, 1, 2, 3, 4, 5, 6, 10]
+14. dict
+    dict.keys(), dict.values()->按原来顺序
+    counter.keys(),counter.values()按iterable的顺序来的
+
+15. file
+    #with模块执行结束自动关闭
+    # Read the entire file as a single string
+    with open('somefile.txt', 'rt') as f:
+        data = f.read()
+
+    # Iterate over the lines of the file
+    with open('somefile.txt', 'rt') as f:
+        for line in f:
+            # process line
+    #写文件并且覆盖
+    # Write chunks of text data
+    with open('somefile.txt', 'wt') as f:
+        f.write(text1)
+        f.write(text2)
+        ...
+
+    # Redirected print , 内容输出至文件
+    with open('somefile.txt', 'wt') as f:
+        print(line1, file=f)
+        print(line2, file=f)
+        ...
+
+    #不用with模块语句,手动close
+    f = open('somefile.txt', 'rt')
+    data = f.read()
+    f.close()
+
+16. sorted(list)->list
+    list.sort()->nothing
+
