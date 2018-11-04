@@ -1,3 +1,7 @@
+# the same with graph valid tree, DSU data structure can be used in circle detection
+# also could use DFS and BFS
+
+
 class Solution(object):
     def __init__(self):
         self.father = dict()
