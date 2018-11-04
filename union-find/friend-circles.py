@@ -29,3 +29,45 @@ class Solution:
             x = t
         return p
 
+# by xidong
+
+
+class Solution(object):
+
+    def __init__(self):
+        self.father = dict()
+
+    def findCircleNum(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: int
+        """
+        self.father = {i:i for i in range(len(M))}
+        ans = set()
+
+        if len(M) <= 0 or len(M[0]) <= 0:
+            return 0
+
+        for i in range(len(M)):
+            for j in range(i+1, len(M[i])):
+                if M[i][j]:
+                    self.union(i, j)
+
+        for i in range(len(M)):
+            ans.add(self.find(i))
+
+        return len(ans)
+
+    def find(self, x):
+        if x == self.father[x]:
+            return x
+
+        self.father[x] = self.find(self.father[x])
+        return self.father[x]
+
+    def union(self, x1, x2):
+        root_1 = self.find(x1)
+        root_2 = self.find(x2)
+        if root_1 != root_2:
+            self.father[root_1] = root_2
+

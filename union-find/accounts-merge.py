@@ -104,8 +104,6 @@ class Solution(object):
         root_2 = self.find(email_2)
         if root_1 != root_2:
             self.father[root_1] = root_2
-        else:
-            return root_1
 
 # test
 
