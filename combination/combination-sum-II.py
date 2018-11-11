@@ -47,20 +47,24 @@ class Solution(object):
         :type target: int
         :rtype: List[List[int]]
         """
-        Solution.res = []
         candidates.sort()
-        self.DFS(candidates,target,0,0,[])
-        return Solution.res
-        
-    def DFS(self,candidates,target,pos,tempVal,tempList):
-        if tempVal == target and sorted(tempList) not in Solution.res:
-            Solution.res.append(tempList)
+        res = []
+        self.helper(candidates, target, [], res, 0)
+        return res
+
+    def helper(self, candidates, target, curr, res, start):
+
+        if target == 0:
+            res.append(curr[:])
             return
-        for i in range(pos,len(candidates)):
-            if tempVal > target:
+        for i in range(start, len(candidates)):
+# skip from the second same number since all the situations with this num is in the res.
+            if i > start and candidates[i] == candidates[i - 1]:
+                continue
+
+            if candidates[i] > target:
                 break
-            self.DFS(candidates,target,i + 1,tempVal + candidates[i],tempList + [candidates[i]])
-            
+            self.helper(candidates, target - candidates[i], curr + [candidates[i]], res, i + 1)
 s = Solution()
 candidates = [29,19,14,33,11,5,9,23,23,33,12,9,25,25,12,21,14,11,20,30,17,19,5,6,6,5,5,11,12,25,31,28,31,33,27,7,33,31,17,13,21,24,17,12,6,16,20,16,22,5]
 target = 28

@@ -7,14 +7,15 @@ class Solution(object):
         """
         output = []
         for i in range(len(input)):
-            c = input[i]
-            # Since there would always be like 2 - 3 * 3 one operator split each other
-            # Enter bt while operator
-            if c == '+' or c == '-' or c == '*':
+            if input[i] in {'+','-','*'}:
                 for a in self.diffWaysToCompute(input[:i]):
                     for b in self.diffWaysToCompute(input[i+1:]):
-
-                        output.append(a + b if c == '+' else(a - b if c == '-' else a * b))
+                        if input[i] == '+':
+                            output.append(a+b)
+                        elif input[i] == '-':
+                            output.append(a-b)
+                        else:
+                            output.append(a*b)
         if not output:
             output.append(int(input))
         return output

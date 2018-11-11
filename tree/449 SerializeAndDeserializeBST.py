@@ -41,9 +41,11 @@ class Codec:
             root = TreeNode(preorder[0])
             inPos = inorder.index(preorder[0])
             preorder.pop(0)
-            root.left = None if inPos == 0 else self.formTree(preorder, inorder[:inPos])
-            root.right = None if inPos + 1 >= len(inorder) else self.formTree(preorder, inorder[inPos + 1:])
+            root.left =  self.formTree(preorder, inorder[:inPos])
+            root.right =  self.formTree(preorder, inorder[inPos + 1:])
             return root
+        else:
+            return None
 
 str = "-";
 seq = ("a", "b", "c") # 字符串序列

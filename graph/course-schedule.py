@@ -1,4 +1,4 @@
-import queue
+import queue,collections
 
 
 class Graph(object):
@@ -70,6 +70,26 @@ class Solution(object):
         else:
             print(len(sort_result))
             return False
+# lmf
+class Solution(object):
+    def canFinish(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: bool
+        """
+        preDict = collections.defaultdict(set)
+        aspreDict = collections.defaultdict(set)
+        for i,j in prerequisites:
+            preDict[i].add(j)
+            aspreDict[j].add(i)
+        bfs = [c for c in range(numCourses) if not preDict[c]]
+        for pre in bfs:
+            for course in aspreDict[pre]:
+                preDict[course].remove(pre)
+                if not preDict[course]:
+                    bfs += [course]
+        return len(bfs) == numCourses
 
 
 
