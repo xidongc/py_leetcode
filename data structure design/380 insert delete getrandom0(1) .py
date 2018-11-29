@@ -41,6 +41,7 @@ class LoadBalancer:
         """
         if self.cList:
             return random.choice(self.cList)
+        # return self.nums[random.randint(0, len(self.nums) - 1)]
         else:
             return -1
 s = LoadBalancer()
