@@ -1,4 +1,4 @@
-#min array 左边一遍右边一遍
+#min 
 class Solution(object):
     def shortestToChar(self, string, c):
         """

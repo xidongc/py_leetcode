@@ -1,11 +1,10 @@
 import collections
 
-
+# pop and add to keep priority
 class LRUCache:
     def __init__(self, capacity):
         self.capacity = capacity
         self.cache = collections.OrderedDict()
-
 
     def get(self, key):
         try:

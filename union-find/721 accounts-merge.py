@@ -105,12 +105,60 @@ class Solution(object):
         if root_1 != root_2:
             self.father[root_1] = root_2
 
+#lmf
+import collections
+
+
+class Solution(object):
+    def __init__(self):
+        self.father = dict()
+
+    def accountsMerge(self, accounts):
+        """
+        :type accounts: List[List[str]]
+        :rtype: List[List[str]]
+        """
+        emails_to_name = dict()
+        tmp = collections.defaultdict(list)
+        res = []
+        if not accounts or len(accounts) == 1:
+            return accounts
+        for account in accounts:
+            name = account[0]
+            emails = account[1:]
+            for email in emails:
+                if email not in self.father:
+                    self.father[email] = email
+                    self.union(email, emails[0])
+                else:
+                    root = self.find(email)
+                    # root == emails[0] or they are separate thus point emails[0] to the former root
+                    self.union(emails[0], root)
+            emails_to_name[self.find(emails[0])] = name
+        for email in self.father.keys():
+            tmp[self.find(email)].append(email)
+        for k, v in tmp.items():
+            res.append([emails_to_name[k]] + sorted(v))
+        return res
+
+    def find(self, email):
+        # I am the father of myself
+        if email == self.father[email]:
+            return email
+        return self.find(self.father[email])
+
+    def union(self, a, b):
+        # Find greatest father
+        father1 = self.find(a)
+        father2 = self.find(b)
+        if father1 != father2:
+            self.father[father1] = self.father[father2]
 # test
 
-accounts = [["John", "johnsmith@mail.com", "john00@mail.com"], ["John", "johnnybravo@mail.com"], ["John", "johnsmith@mail.com", "john_newyork@mail.com"], ["Mary", "mary@mail.com"]]
+# accounts = [["John", "johnsmith@mail.com", "john00@mail.com"], ["John", "johnnybravo@mail.com"], ["John", "johnsmith@mail.com", "john_newyork@mail.com"], ["Mary", "mary@mail.com"]]
 accounts = [["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]
 s = Solution()
 s.accountsMerge(accounts)
 
-print([["John", "john00@mail.com", "john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]])
+# print([["John", "john00@mail.com", "john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]])
 

@@ -5,7 +5,7 @@ class Solution(object):
     def wordBreak(self, s, wordDict):
         """
         :type s: str
-        :type wordDict: List[str]
+        :type wordDict: List[str]dis
         :rtype: List[str]
         """
         sDict = collections.defaultdict(list)

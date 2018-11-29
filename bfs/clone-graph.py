@@ -19,6 +19,7 @@ class Solution(object):
         head = UndirectedGraphNode(node.label)
         q1.append(node)
         q2.append(head)
+        # 用map因为必须要把新的object存起来
         map = {node: head}
 
         while len(q1) > 0:
@@ -36,3 +37,25 @@ class Solution(object):
                         q1.append(i)
                         q2.append(val2)
         return head
+
+# lmf
+class Solution:
+    # @param node, a undirected graph node
+    # @return a undirected graph node
+    def cloneGraph(self, node):
+        if not node:
+            return None
+        queue = [node]
+        head = UndirectedGraphNode(node.label)
+        nodeDict = {node: head}
+        while queue:
+            old = queue.pop(0)
+            new = nodeDict[old]
+            for neighbor in old.neighbors:
+                if neighbor not in nodeDict:
+                    queue.append(neighbor)
+                    newNeighbor = UndirectedGraphNode(neighbor.label)
+                    nodeDict[neighbor] = newNeighbor
+                new.neighbors.append(nodeDict[neighbor])
+        return head
+

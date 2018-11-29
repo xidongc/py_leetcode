@@ -51,6 +51,32 @@ class Solution(object):
                                 q.put((num_i-1, num_j))
 
         return num_island
+# lmf
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        if not grid or not grid[0]:
+            return 0
+        res = 0
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':
+                    self.bfs(grid, i, j, directions)
+                    res += 1
+        return res
+
+    def bfs(self, grid, x, y, directions):
+        grid[x][y] = 'X'
+        for direction in directions:
+            curx = x + direction[0]
+            cury = y + direction[1]
+            if curx >= 0 and cury >= 0 and curx < len(grid) and cury < len(grid[0]) and grid[curx][cury] == '1':
+                self.bfs(grid, curx, cury, directions)
+
 
 s = Solution()
 result = s.numIslands([["1","1","1"],["0","1","1"],["1","1","0"]])
