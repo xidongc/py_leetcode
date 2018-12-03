@@ -1,3 +1,4 @@
+# 多次买卖
 class Solution:
     def maxProfit(self, prices):
         """
@@ -21,6 +22,19 @@ class Solution:
                     j += 1
             ret += tmp
         return ret
+#     lmf
+class Solution:
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        res = 0
+        tmp = 0
+        for i in range(1,len(prices)):
+            tmp = max(0,prices[i] - prices[i-1])
+            res += tmp
+        return res
 
 s = Solution()
 prices = [1,2,3,4,5]

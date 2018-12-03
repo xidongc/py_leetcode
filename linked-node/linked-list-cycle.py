@@ -1,3 +1,5 @@
+# 142 find whether there is a cycle
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
@@ -19,3 +21,18 @@ class Solution(object):
                 ret = True
                 break
         return ret
+
+#     lmf concise version
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        fast,slow = head,head
+        while fast != None and fast.next != None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False

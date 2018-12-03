@@ -72,3 +72,49 @@ class Solution(object):
 s = Solution()
 head = s.createList([1,2,3,4])
 s.showList(s.reorderList(head))
+
+#lmf 第一步找中点/第二反转链表/第三步把第二条链表的每个点插在第一个链表的点后面
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def reorderList(self, head):
+        """
+        :type head: ListNode
+        :rtype: void Do not return anything, modify head in-place instead.
+        """
+        # find middle node
+        if not head:
+            return
+        fast = slow = head
+        while fast.next != None and fast.next.next != None:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                break
+        tmp = slow.next
+        slow.next = None
+        headB = self.reverseList(tmp)
+        while headB != None:
+            tmpA = head.next
+            tmpB = headB.next
+            head.next = headB
+            headB.next = tmpA
+            head = tmpA
+            headB = tmpB
+
+    def reverseList(self, head):
+        if not head or not head.next:
+            return head
+        prev = head
+        cur = head.next
+        while cur:
+            tmp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = tmp
+        head.next = None
+        return prev

@@ -70,3 +70,31 @@ class Solution(object):
         else:
             print(len(sort_result))
             return []
+
+# lmf
+import collections
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        preDict = collections.defaultdict(set)
+        aspreDict = collections.defaultdict(set)
+        for i,j in prerequisites:
+            preDict[i].add(j)
+            aspreDict[j].add(i)
+        bfs = [c for c in range(numCourses) if not preDict[c]]
+        for pre in bfs:
+            for course in aspreDict[pre]:
+                preDict[course].remove(pre)
+                if not preDict[course]:
+                    bfs += [course]
+        return bfs if numCourses == len(bfs) else []
+
+# loop
+# s.findOrder(2, [[1,0],[0,1]])
+# also a loop
+# s.findOrder(3, [[1,0],[1,2],[0,1]])
+# bfs = [2]->can't take all courses

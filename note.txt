@@ -1,0 +1,159 @@
+1. collections.Counter(string/list), inherits the functions of dict
+   结果按照频率倒序排序
+   collections.Counter(iterable).most_common(n)->返回一个top n list（降序）:
+      [('a', 5), ('r', 2), ('b', 2)]
+      for k,v in [('a', 5), ('r', 2), ('b', 2)]: blahblah
+
+2. collections.OrderedDict()
+   记住key的插入顺序，可用作sort dict
+   d = dict(), OrderedDict(sorted(s.items(),k=lambda x:x[0])) -> sort by key
+   pop(key) -> value
+   popitem(last=True) -> (key,value) LIFO
+   popitem(last=False) -> (key,value) FIFO
+
+3. isdigit(), only integers are, '0.3' or '13 45' are not
+
+4. bisect
+   bisect.bisect_left: returns the leftmost place that can be inserted
+   bisect .bisect_right: returns the rightmost place, = bisect.bisect
+
+5. 元素删除
+   #list
+   list.remove(element)->get ValueError is this element not in the list
+   list.pop(index)->get IndexError if index out of range
+   del list[index]/ del list[index:endindex) get IndexError
+   NOT!!!!!!!lista - listb
+   #dict
+   del dict[element]
+   #set
+   s = set([1, 2, 3, 4]) -> s: {1,2,3,4}
+   set.remove(element)->KeyError
+   set,discard(element)->No Error
+   set.pop()->remove any arbitrary element, Key Error
+   seta - setb
+
+6. 元素插入
+   #list
+   list.append(element)
+   list.insert(index,element)
+   list.extend(elements)
+   lista + listb
+   #set
+   set.add(element)
+   NOT!!!!!!!seta + setb
+
+
+7. 元素查找
+   #string
+   string.find(substring)-> index/-1
+   stirng.index(substring)-> index/Error
+   stirng.startswith(substring) -> index
+   #list
+   list只有index，和string一致
+
+8. set
+   只能寸不可变例如tuple
+   a |= b union
+   a &= b intersection
+   a -= b deduction
+   seta.update(setb), 把setb里的元素放入seta中
+
+9. tuple(immutable)
+   单个元素写成(num,)
+
+10.深浅拷贝
+   好像正常都是深拷贝，例如list, func(list.pop()) or something, will change this list
+   浅拷贝：like res.append(tmpList(:))
+
+11.小函数
+   #map
+   num = int, list(map(int,str(num))),因为map（左，iterable）
+   #join
+   list of int:num, int(''.join(num))
+   ''.join(list),list of string可以，list of int不行，必须用map(str,num)
+   #zip
+   zip(iterable):
+      zip([a,b],c) 可用 for((n1,n2),n3 in zip([a,b],c))取出
+      zip(*iterable) : zip(*list)
+
+12.string(immutable)
+   no sth like string[i] = 'a'
+   string * int -> 来重复重复重复
+   sorted(string) -> list of chars
+
+13.itertools
+   itertools.permutation([1,2,3],2):
+      (1,2),(1,3),(2,1),(2,3),(3,1),(3,2)
+   itertools.combinations([1,2,3],2):
+      (1,2),(1,3),(2,3)
+   itertools.chain(*iterables):
+       return iterators NOT LIST
+       chain('ABC', 'DEF') --> A B C D E F
+       chain(*list)
+
+   list = [[[1,2],[5,6]],[[1,3]],[[4,10]]]   sorted(chain(*list))->[[1, 2], [1, 3], [4, 10], [5, 6]]
+   list = [[1,2],[5,6],[1,3],[4,10]]    sorted(chain(*list))->[1, 1, 2, 3, 4, 5, 6, 10]
+
+    iter(list)->变成迭代器,next(iterable)
+
+14. dict
+    dict.keys(), dict.values()->按原来顺序
+    counter.keys(),counter.values()按iterable的顺序来的
+    dict.get(key, default=None)
+    dict.setdefault(key, default=None), 果字典中包含有给定键，则返回该键对应的值，否则返回为该键设置的值。
+
+15. file
+    #with模块执行结束自动关闭
+    # Read the entire file as a single string
+    with open('somefile.txt', 'rt') as f:
+        data = f.read()
+
+    # Iterate over the lines of the file
+    with open('somefile.txt', 'rt') as f:
+        for line in f:
+            # process line
+    #写文件并且覆盖
+    # Write chunks of text data
+    with open('somefile.txt', 'wt') as f:
+        f.write(text1)
+        f.write(text2)
+        ...
+
+    # Redirected print , 内容输出至文件
+    with open('somefile.txt', 'wt') as f:
+        print(line1, file=f)
+        print(line2, file=f)
+        ...
+
+    #不用with模块语句,手动close
+    f = open('somefile.txt', 'rt')
+    data = f.read()
+    f.close()
+
+16. sorted(list)->list
+    list.sort()->nothing
+
+17. min(list[str])->返回长度最短的str
+
+18. boolean
+    boolean可以直接相乘（自动转化为int 0/1）
+
+19. json
+    # encode into json datatype
+    json.dumps()
+    json.dumps({'a': 'Runoob', 'b': 7}, sort_keys=True, indent=4, separators=(',', ': '))
+    # decode json
+    json.loads(object)
+    object -> dict
+
+20. backtrack <=> dp， 做不出来的就用递归做
+    array: 双指针左右同时扫/找乱序出现的位置/找peak 42 845 581
+    path：bfs每次在原本path上做改动
+    访问点限制问题：用visited list简单作出
+
+21. 694 list mutable，所以append list这种操作会对它本身造成影响
+        就像传list+【3】这种是对list不造成影响一样
+        string，immutable，所以无论是+=什么，无法改变本身
+
+
+

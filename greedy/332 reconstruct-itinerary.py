@@ -18,12 +18,17 @@ class Solution(object):
         """
         route = []
         airMap = collections.defaultdict(list)
-        for ticket in sorted(tickets)[::-1]:
+        # 按字母顺序从小到大排序
+        tickets.sort(key=lambda ticket: (ticket[0],ticket[1]))
+        for ticket in tickets:
             airMap[ticket[0]].append(ticket[1])
         def visit(airport):
             while airMap[airport]:
+                # 先pop权重大的，这样倒序之后字典序就小了？？
                 visit(airMap[airport].pop())
             route.append(airport)
         visit('JFK')
         return route[::-1]
-
+# 字典序，第一个字母相同就去找第二个字母排序
+s = Solution()
+s.findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])

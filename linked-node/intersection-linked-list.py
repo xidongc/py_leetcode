@@ -38,3 +38,20 @@ class Solution(object):
             tmp1 = tmp1.next
             tmp2 = tmp2.next
         return tmp1
+
+#lmf
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if not headA or not headB:
+            return None
+        a,b = headA, headB
+        while a != b: #either reaches None or same node
+            # first iteration, swap start node so that they keep the difference
+            a = a.next if a != None else headB
+            b = b.next if b != None else headA
+        return a
+# 或者把a.tail指向headb

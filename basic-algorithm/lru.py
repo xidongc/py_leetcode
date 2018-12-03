@@ -1,6 +1,6 @@
 import collections
 
-
+# pop and add to keep priority
 class LRUCache:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -18,6 +18,8 @@ class LRUCache:
         try:
             self.cache.pop(key)
         except KeyError:
+            # The pairs are returned in LIFO order if last is true or FIFO order if false.
+            # if key not exists, check current length
             if len(self.cache) >= self.capacity:
                 self.cache.popitem(last=False)
         self.cache[key] = value
