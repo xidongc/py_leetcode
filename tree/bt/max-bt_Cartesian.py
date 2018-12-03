@@ -1,4 +1,6 @@
-class Solution:
+# sol-1 recursion
+class Solution(object):
+
     def constructMaximumBinaryTree(self, nums):
         """
         :type nums: List[int]
@@ -18,4 +20,38 @@ class Solution:
 
         root = helper(nums)
         return root
+
+# sol-2 monotone stack
+class Solution(object):
+
+    def constructMaximumBinaryTree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        mono = []
+        if len(nums) <= 0:
+            return None
+
+        for num in nums:
+            tmp_list = []
+            while len(mono) > 0 and mono[-1].val < num:
+                tmp_list.append(mono.pop())
+            node = TreeNode(num)
+            mono.append(node)
+            if len(tmp_list) > 0:
+                node.left = tmp_list.pop()
+                node = node.left
+                while len(tmp_list) > 0:
+                    node.right = tmp_list.pop()
+                    node = node.right
+
+        head = mono[0]
+        curr = mono.pop()
+        while len(mono) > 0:
+            tmp = mono.pop()
+            tmp.right = curr
+            curr = tmp
+
+        return head
 
