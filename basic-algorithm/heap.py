@@ -61,7 +61,7 @@ class SmallHeap(object):
         self.current_size -= 1
 
         start = 1
-        while start * 2  < self.current_size:
+        while start * 2 < self.current_size:
             if self.heap_array[start] > min(self.heap_array[2*start], self.heap_array[2*start+1]):
                 if self.heap_array[2*start] <= self.heap_array[2*start+1]:
                     self.heap_array[start], self.heap_array[2*start] = self.heap_array[2*start], self.heap_array[start]
