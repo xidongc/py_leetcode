@@ -1,3 +1,4 @@
+# 见505，如果放的是tuple进去按x[0]比较
 h=[]                    #定义一个list
 from heapq import *     #引入heapq模块
 h
