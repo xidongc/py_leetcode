@@ -58,6 +58,18 @@ class Solution(object):
         return [x.get_item() for x in a[0: k]]
 
 
+# Sol-2 by Xidong
+class Solution(object):
+
+    def topKFrequent(self, words: 'List[str]', k: 'int') -> 'List[str]':
+        dic = dict()
+        for word in words:
+            dic[word] = dic.get(word, 0) + 1
+
+        dic = sorted(dic.items(), key=lambda x:(-x[1], x[0]))
+        return [x[0] for x in dic[0:k]]
+
+
 
 
 

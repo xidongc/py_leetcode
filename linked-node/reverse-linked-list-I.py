@@ -17,6 +17,7 @@ class ListNode:
 #         p.next.next = p
 #         p.next = None
 #         return head
+
 #非递归
 class Solution:
     def reverseList(self, head):
