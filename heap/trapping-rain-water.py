@@ -30,4 +30,35 @@ class Solution(object):
         print(trap_rain)
         return trap_rain
 
-
+#lmf
+# two pointers
+# 从左右两边向中间靠近，分别算水量
+class Solution:
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        left,right = 0,len(height) - 1
+        res = 0
+        maxLeft,maxRight = 0,0
+        while left <= right:
+            # 左边比较短，左边是下限
+            if height[left] <= height[right]:
+                # 都判断一下是不是最高点
+                if height[left] >= maxLeft:
+                    maxLeft = height[left]
+                else:
+                    res += maxLeft - height[left]
+                left += 1
+            else:
+                # 右边是下限
+                # 都判断一下是不是最高点
+                if height[right] >= maxRight:
+                    maxRight = height[right]
+                else:
+                    res += maxRight - height[right]
+                right -= 1
+        return res
+s = Solution()
+s.trap([0,1,0,2,1,0,1,3,2,1,2,1])

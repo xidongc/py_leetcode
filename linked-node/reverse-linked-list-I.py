@@ -12,11 +12,11 @@ class ListNode:
 #         """
 #         if not head or not head.next:
 #             return head
-#         p = head
-#         head = self.reverseList(p.next)
-#         p.next.next = p
-#         p.next = None
-#         return head
+# 这个newhead在递归函数里不起作用，所以每次都返回这个newhead
+#         newhead = self.reverseList(p.next)
+#         head.next.next = head
+#         head.next = None
+#         return newhead
 #非递归
 class Solution:
     def reverseList(self, head):

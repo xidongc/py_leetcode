@@ -30,16 +30,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if not nums:
-            return -1
-        if nums[0] < nums[-1]:
+        if len(nums) == 1 or nums[0] < nums[-1]:
             return nums[0]
         target = nums[0]
-        left,right = 0,len(nums)-1
-        while left + 1 < right:
-            mid = (left + right) // 2
-            if nums[mid] < target:
-                right = mid
+        l,r = 0,len(nums)-1
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if nums[mid] >= target:
+                l = mid + 1
             else:
-                left = mid + 1
-        return min(nums[left],nums[right])
+                r = mid
+        return min(nums[l],nums[r])

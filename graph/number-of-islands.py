@@ -65,17 +65,17 @@ class Solution(object):
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if grid[i][j] == '1':
-                    self.bfs(grid, i, j, directions)
+                    self.dfs(grid, i, j, directions)
                     res += 1
         return res
 
-    def bfs(self, grid, x, y, directions):
+    def dfs(self, grid, x, y, directions):
         grid[x][y] = 'X'
         for direction in directions:
             curx = x + direction[0]
             cury = y + direction[1]
             if curx >= 0 and cury >= 0 and curx < len(grid) and cury < len(grid[0]) and grid[curx][cury] == '1':
-                self.bfs(grid, curx, cury, directions)
+                self.dfs(grid, curx, cury, directions)
 
 
 s = Solution()

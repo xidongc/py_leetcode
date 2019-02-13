@@ -15,16 +15,22 @@ class Solution(object):
         :type p: TreeNode
         :rtype: TreeNode
         """
-        if not root or not p:
-            return None
-        # 因为是比它大的，所以肯定要走到左子树鸭
-        if p.val >= root.val:
-            return self.inorderSuccessor(root.right, p)
-        else:
-            left = self.inorderSuccessor(root.left, p)
-            if left == None:
-                return root
+        s = root
+        res = None
+        while s != None:
+            if p.val < s.val:
+                res = s
+                s = s.left
             else:
-                return left
+                s = s.right
+        return res
 
-# ?????????????????????????????????????????????????/
+# https://www.youtube.com/watch?v=JdmAYw5h3G8
+# case1: p has the right subtree(40), then search for its first right successor
+# case2: p has not right subtree(37), 最近的向左走的root。 比如40
+#               50
+#           16      90
+#       14     40
+#     10  15  35  45
+#            32 36
+#                 37

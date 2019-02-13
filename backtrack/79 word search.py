@@ -20,9 +20,6 @@ class Solution(object):
         res = False
         if i >= 0 and j >= 0 and i < len(board) and j < len(board[0]) and board[i][j] == word[0]:
             board[i][j] = '#'
-            res = self.dfs(board, word[1:], i + 1, j) or self.dfs(board, word[1:], i - 1, j) or self.dfs(board,
-                                                                                                         word[1:], i,
-                                                                                                         j + 1) or self.dfs(
-                board, word[1:], i, j - 1)
+            res = self.dfs(board, word[1:], i + 1, j) or self.dfs(board, word[1:], i - 1, j) or self.dfs(board,word[1:], i,j + 1) or self.dfs(board, word[1:], i, j - 1)
             board[i][j] = word[0]
         return res
