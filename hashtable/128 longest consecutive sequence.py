@@ -1,49 +1,14 @@
-# v1 by mengfei
-# not a good solution by xidong
-
-class Solution:
-    def longestConsecutive(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        nums = list(set(nums))  # remove duplicate
-        self.fa = {k: k for k in nums}
-        for x in nums:
-            if (x - 1) in self.fa:
-                self.Union(x, x - 1)
-        fa_cnt = dict()
-        maxv = 0
-        for x in nums:
-            fx = self.Find(x)
-            if fx not in fa_cnt:
-                fa_cnt[fx] = 1
-            else:
-                fa_cnt[fx] += 1
-            maxv = max(maxv, fa_cnt[fx])
-        return maxv
-        
-
-    def Union(self, x, y):
-        fx, fy = self.Find(x), self.Find(y)
-        if fx != fy:
-            self.fa[fx] = fy
-
-    def Find(self, x):
-        p = x
-        while p != self.fa[p]:
-            p = self.fa[p]
-        while x != self.fa[x]:
-            t = self.fa[x]
-            self.fa[x] = p
-            x = t
-        return p
+##
+# 128. Longest Consecutive Sequence
+# Input: [100, 4, 200, 1, 3, 2]
+# Output: 4
+# Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+##
 
 
-# v2 by mengfei
-# good solution using hash O(n) by xidong
+# hash O(n)
+class Solution(object):
 
-class Solution:
     def longestConsecutive(self, nums):
         """
         :type nums: List[int]
@@ -67,9 +32,8 @@ class Solution:
 
         return maxv
 
-# v3 by xidong O(nlgn) two pinters
 
-
+# O(nlgn) two pinters
 class Solution(object):
 
     def longestConsecutive(self, nums):

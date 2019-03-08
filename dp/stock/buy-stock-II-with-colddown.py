@@ -1,23 +1,24 @@
 class Solution(object):
+
     def maxProfit(self, prices):
-        """
-        :type prices: List[int]
-        :rtype: int
-        """
-        if not prices:
+        # corner case
+        if len(prices) <= 1:
             return 0
 
-        s0 = [-100 for _ in range(len(prices))]
-        s1 = [-100 for _ in range(len(prices))]
-        s2 = [-100 for _ in range(len(prices))]
+        sell = 0
+        not_sell = -prices[0]
+        buy = -prices[0]
+        not_buy = 0
 
-        s0[0] = 0
-        s1[0] = -prices[0]
+        for price in prices[1:]:
+            tmp2 = not_sell
+            tmp1 = sell
+            tmp4 = not_buy
+            tmp3 = buy
 
-        for i, x in enumerate(prices[1:]):
-            i = i+1
-            s0[i] = max(s2[i-1], s0[i-1])
-            s1[i] = max(s0[i-1]-x, s1[i-1])
-            s2[i] = s1[i-1]+x
+            sell = max(tmp2, tmp3) + price
+            not_sell = max(tmp2, tmp3)
+            buy = tmp4 - price
+            not_buy = max(tmp1, tmp4)
 
-        return max(s0[len(prices)-1], s2[len(prices)-1])
+        return max(sell, not_buy)
