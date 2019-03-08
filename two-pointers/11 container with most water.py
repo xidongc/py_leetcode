@@ -16,3 +16,25 @@ class Solution(object):
             else:
                 right -= 1
         return maxRes
+
+# Sol - 2 (solution when 1st review)
+class Solution(object):
+
+    def maxArea(self, height: List[int]) -> int:
+        i = 0
+        j = len(height) - 1
+        area = 0
+
+        while i < j:
+            if height[i] < height[j]:
+                area = max(area, (j - i) * height[i])
+                ref_i = height[i]
+                while i < j and height[i] <= ref_i:
+                    i += 1
+            else:
+                area = max(area, (j - i) * height[j])
+                ref_j = height[j]
+                while i < j and height[j] <= ref_j:
+                    j -= 1
+
+        return area
