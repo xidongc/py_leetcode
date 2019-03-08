@@ -52,6 +52,12 @@ class MedianFinder:
         else:
             return float(self.large[0])
 # Your MedianFinder object will be instantiated and called as such:
+# memory有限怎么办(heap一次把所有的data都放进memory,
+# 如果不够的话可以比如存number的count/  that's 2^32 buckets,
+# or at most 2^33 integers (key and count for each int),
+# which is 2^35 bytes or 32GB. Then at any point, to find the median,
+# just use the counts to determine which integer is the middle element.
+# This takes constant time (albeit a large constant, but constant nonetheless
 obj = MedianFinder()
 obj.addNum(7)
 obj.addNum(2)

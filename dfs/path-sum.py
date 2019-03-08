@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+#这里主要注意判断叶子，并不是not node就代表上一级是leaf，有可能只有一边子树
 class Solution:
 
     def hasPathSum(self, root, sum):
@@ -35,3 +35,10 @@ class Solution:
             return True
         else:
             return False
+        # method 2
+        if not root:
+            return False
+        if not root.left and not root.right and sum == root.val:
+            return True
+        return self.hasPathSum(root.left,sum-root.val) or self.hasPathSum(root.right,sum-root.val)
+

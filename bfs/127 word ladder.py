@@ -1,8 +1,8 @@
 import string
 class Solution(object):
     def ladderLength(self, beginWord, endWord, wordList):
-        if endWord not in wordList :
-            return 0
+        # if endWord not in wordList :
+        #     return 0
         wordSet = set(wordList)
         charString = string.ascii_lowercase
         length = 1

@@ -1,3 +1,8 @@
+# 求和做法
+# hash做法（建立n长度的list，然后把值作为下标来遍历，遍历到就置1，）
+# 多个dup， hash做法。 置nums[abs[i]] *= -1， 再查到就append
+# sort之后按for i比较
+# 快慢指针
 class Solution(object):
 
     def findDuplicate(self, nums):

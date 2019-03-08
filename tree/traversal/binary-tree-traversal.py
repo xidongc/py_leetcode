@@ -31,6 +31,28 @@ class Solution(object):
         self.traversal(root.left, level+1, ret)
         self.traversal(root.right, level+1, ret)
 # lmf
+# dfs 因为不再需要多次拷贝，有空间优化
+class Solution:
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        Solution.res = []
+        def dfs(root,depth):
+            if not root:
+                return
+            if depth <= len(Solution.res) - 1:
+                Solution.res[depth].append(root.val)
+            else:
+                Solution.res.append([root.val])
+            dfs(root.left, depth+1)
+            dfs(root.right, depth+1)
+        dfs(root,0)
+        return Solution.res
+# bfs
 class Solution(object):
     def levelOrder(self, root):
         """
@@ -51,5 +73,6 @@ class Solution(object):
                 if node.right: queue.append(node.right)
             res.append(tmpList)
         return res
+
 
 

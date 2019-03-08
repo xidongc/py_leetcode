@@ -1,3 +1,8 @@
+# 小笔记p18
+# 1. bottom up 最优
+# 2. 公共路经法
+# 3. top down，对root左右节点调用hasnode看p，q是在左还是在右，else return root
+
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, x):
@@ -15,7 +20,10 @@ class Solution(object):
         :type q: TreeNode
         :rtype: TreeNode
         """
-        if not root or root.val == p.val or root.val == q.val:
+        if not root:
+            return None
+
+        if root.val == p.val or root.val == q.val:
             return root
 
         left = self.lowestCommonAncestor(root.left, p, q)
@@ -23,4 +31,6 @@ class Solution(object):
 
         if left and right:
             return root
+        if not left and not right:
+            return None
         return left if left else right

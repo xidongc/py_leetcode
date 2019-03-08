@@ -1,40 +1,32 @@
-class MinStack(object):
+# 每个元素push进来的时候存当前min进去，
+# 记录当前状态
+# 这方法真聪明
+
+class MinStack:
 
     def __init__(self):
         """
         initialize your data structure here.
         """
-        stack = []
-        self.stack = stack
-    def push(self, x):
-        """
-        :type x: int
-        :rtype: void
-        """
-        self.stack.append(x)
+        self.s = []
 
-    def pop(self):
-        """
-        :rtype: void
-        """
-        if self.stack:
-            self.stack.pop()
+    def push(self, x: 'int') -> 'None':
+        curMin = self.getMin()
+        if curMin == None or x < curMin:
+            curMin = x
+        self.s.append((x, curMin))
 
-    def top(self):
-        """
-        :rtype: int
-        """
-        if self.stack:
-            return self.stack[-1]
-        return None
+    def pop(self) -> 'None':
+        self.s.pop()
 
-    def getMin(self):
-        """
-        :rtype: int
-        """
-        if self.stack:
-            return min(self.stack)
-        return None
+    def top(self) -> 'int':
+        return self.s[-1][0]
+
+    def getMin(self) -> 'int':
+        if not self.s:
+            return None
+        else:
+            return self.s[-1][1]
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
