@@ -37,4 +37,31 @@ nums = [-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]
 s = Solution()
 print(s.threeSum(nums))
 
+#
+class Solution:
+    def threeSum(self, nums: 'List[int]') -> 'List[List[int]]':
+        if len(nums) < 3:
+            return []
+        res = set()
+        nums.sort()
+        for i, num in enumerate(nums[:-2]):
+            # remove duplicates, but sup still exist
+            if i != 0 and num == nums[i - 1]:
+                continue
+            l, r = i + 1, len(nums) - 1
+            # find the target of - num
+            target = -num
+            while l < r:
+                if nums[l] + nums[r] == target:
+                    res.add((nums[i], nums[l], nums[r]))
+                    # move when find target
+                    l += 1
+                    r -= 1
+                elif nums[l] + nums[r] < target:
+                    l += 1
+                else:
+                    r -= 1
+        return list(map(list, res))
+
+
 

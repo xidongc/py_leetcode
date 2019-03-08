@@ -64,7 +64,7 @@ class Solution(object):
 
 
 # Sol-3: Divide Conquer with memorization, LTE
-# use hashmap to memorize node which traversed twice in Sol-2
+# use hashtable to memorize node which traversed twice in Sol-2
 class Solution(object):
     def minimumTotal(self, triangle):
         """
@@ -73,7 +73,7 @@ class Solution(object):
         """
 
         # divide and conquer with memorization
-        # time complexity O(n^2) with extra space O(n) in hashmap
+        # time complexity O(n^2) with extra space O(n) in hashtable
 
         hashmap = {}
 

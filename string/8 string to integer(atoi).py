@@ -1,23 +1,28 @@
 class Solution(object):
-    def myAtoi(self, string):
+    def myAtoi(self, s):
         """
         :type str: str
         :rtype: int
         """
         #         这种操作都是浅拷贝吗
-        string = string.strip()
-        if not string:
-            return 0
-        i = 0
-        flag = True
-        if string[i] in ['+', '-']:
-            flag = False if string[i] == '-' else True
-            i += 1
         res = 0
-        while i < len(string) and string[i].isdigit():
-            res = res * 10 + int(string[i])
-            i += 1
-        if res:
-            res = (-res) if not flag else (+res)
-        res = max(min(2 ** 31 - 1, res), -2 ** 31)
+        s = s.strip()
+        label = '+'
+        for i in range(len(s)):
+            if not s[i].isdigit():
+                if i == 0 and s[i] in ['-','+']:
+                    label = s[i]
+                    continue
+                else:
+                    # 比如如果前面是数字后面开始出现字母，这时候就return出去了
+                    if label == '-':
+                        res = -res
+                    return max(-2147483648,min(res,2147483648))
+            else:
+                res = 10 * res + int(s[i])
+        if label == '-':
+            res = -res
+        return max(-2147483648,min(res,2147483647))
+        # max(-2147483648,min(res,2147483648))
         return res
+# "  -0012a42" -> -12

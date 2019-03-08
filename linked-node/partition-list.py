@@ -47,3 +47,28 @@ s = Solution()
 head = s.createList([1,4,3,2,5,2])
 head1 = s.partition(head, 3)
 s.showList(head1)
+
+# lmf
+def partition(self, head, x):
+    """
+    :type head: ListNode
+    :type x: int
+    :rtype: ListNode
+    """
+    h1, h2 = ListNode(0), ListNode(0)
+    l1, l2 = h1, h2
+    while head:
+        if head.val < x:
+            l1.next = head
+            l1 = l1.next
+        else:
+            l2.next = head
+            l2 = l2.next
+        head = head.next
+    #     为什么必须设none
+    l2.next = None
+    l1.next = h2.next
+    return h1.next
+# head: 1->3
+# l1 0->1
+# l2 0->3->1 l2指向的是3这个点，which has next node: 1

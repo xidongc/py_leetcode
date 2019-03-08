@@ -61,16 +61,14 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
         """
-        dict = {'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}
-        resList = ['']
+        charmap = ["0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
         if not digits:
-            return resList
+            return []
+        res = ['']
         for digit in digits:
-            tmpList = []
-            for tmp in resList:
-                for letter in dict[digit]:
-                    tmpList.append(tmp+letter)
-            resList = tmpList
-        return resLis
-
+            tmp = []
+            for w in res:
+                tmp += [w + c for c in charmap[int(digit)] ]
+            res = tmp
+        return res
         
