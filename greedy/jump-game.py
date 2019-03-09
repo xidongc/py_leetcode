@@ -23,3 +23,21 @@ class Solution:
             else:
                 return False
         return True
+
+
+# Solution in review
+class Solution(object):
+    def canJump(self, nums: List[int]) -> bool:
+        dp = [False for _ in range(len(nums))]
+        dp[0] = True
+        current_position = 0
+
+        for i, num in enumerate(nums):
+            if dp[i] is True:
+                if i + nums[i] > current_position:
+                    for t in range(nums[i] + 1):
+                        if 0 <= i + t < len(nums):
+                            dp[i + t] = True
+                            current_position = max(current_position, i + t)
+
+        return dp[len(nums) - 1]
