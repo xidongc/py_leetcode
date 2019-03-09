@@ -68,7 +68,6 @@ class Solution(object):
         if len(sort_result) == numCourses:
             return True
         else:
-            print(len(sort_result))
             return False
 # lmf
 class Solution(object):
@@ -90,6 +89,50 @@ class Solution(object):
                 if not preDict[course]:
                     bfs += [course]
         return len(bfs) == numCourses
+
+
+# code in 2rd review:
+class Solution(object):
+
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+
+        if numCourses == 0:
+            return True
+        elif len(prerequisites) == 0:
+            return True
+
+        inDegree = dict()
+        queue = list()
+        neighbors = dict()
+        seq = list()
+
+        for prerequisite in prerequisites:
+            inDegree[prerequisite[0]] = 0
+            inDegree[prerequisite[1]] = 0
+            neighbors[prerequisite[0]] = []
+            neighbors[prerequisite[1]] = []
+
+        for prerequisite in prerequisites:
+            inDegree[prerequisite[1]] = inDegree.get(prerequisite[1], 0) + 1
+            tmp = neighbors.get(prerequisite[0], [])
+            tmp.append(prerequisite[1])
+
+        for k, v in inDegree.items():
+            if v == 0:
+                queue.append(k)
+                seq.append(k)
+
+        while len(queue) > 0:
+            ele = queue.pop(0)
+            for x in neighbors[ele]:
+                inDegree[x] -= 1
+                if inDegree[x] == 0:
+                    queue.append(x)
+                    seq.append(x)
+
+        if len(seq) == len(inDegree) or len(seq) >= numCourses:
+            return True
+        return False
 
 
 
