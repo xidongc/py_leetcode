@@ -41,11 +41,11 @@ class Solution:
         """
         left,right = 0,len(height) - 1
         res = 0
-        maxLeft,maxRight = 0,0
-        while left <= right:
+        rmaxLeft,maxRight = 0,0
+        while left < right:
             # 左边比较短，左边是下限
             if height[left] <= height[right]:
-                # 都判断一下是不是最高点
+                # 都判断一下是不是最高点, 最高点不储水
                 if height[left] >= maxLeft:
                     maxLeft = height[left]
                 else:
