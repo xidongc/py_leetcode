@@ -6,6 +6,8 @@ class RandomListNode(object):
         self.label = x
         self.next = None
         self.random = None
+
+
 #method 1
 class Solution(object):
     def copyRandomList(self, head):
@@ -13,10 +15,12 @@ class Solution(object):
         :type head: RandomListNode
         :rtype: RandomListNode
         """
-        if head == None:
+        if head is None:
             return None
+
         self.copyNext(head)
         self.copyRandom(head)
+
         dummyNode = head.next
         while head != None:
             tempNode = head.next
@@ -38,8 +42,11 @@ class Solution(object):
             if head.random != None:
                 head.next.random = head.random.next
             head = head.next.next
+
+
 # method 2
 class Solution(object):
+
     def copyRandomList(self, head):
         """
         :type head: RandomListNode
@@ -65,3 +72,54 @@ class Solution(object):
             oldcur = oldcur.next
             cur = cur.next
         return newhead
+
+
+# Sol from Xidong
+from collections import OrderedDict
+
+
+#  Definition for a Node.
+class Node(object):
+    def __init__(self, val, next, random):
+        self.val = val
+        self.next = next
+        self.random = random
+
+
+class Solution(object):
+
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if head is None:
+            return None
+
+        oldnewmapping = OrderedDict()
+
+        curr = head
+        dummy = Node(0, None, None)
+        newNode = dummy
+
+        while curr:
+            newNode.next = Node(curr.val, None, None)
+            oldnewmapping[curr] = newNode.next
+            newNode = newNode.next
+            curr = curr.next
+
+        for k, v in oldnewmapping.items():
+            k.next = v
+            v.random = k
+
+        tmp = dummy.next
+        while tmp:
+            if tmp.random.random is None:
+                tmp.random = None
+            else:
+                tmp.random = tmp.random.random.next
+            tmp = tmp.next
+
+        tmp = Node(0, None, None)
+        for k in oldnewmapping:
+            tmp.next = k
+            tmp = tmp.next
+        tmp.next = None
+
+        return dummy.next
