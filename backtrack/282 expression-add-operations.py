@@ -24,6 +24,8 @@ class Solution:
                     dfs(target, num, i + 1, string + '-' + str(x), tmpSum - x, -x)
                     dfs(target, num, i + 1, string + '*' + str(x), tmpSum - lastf + lastf * x, lastf * x)
                 # no leading 0 or duplicate 0.
+                # if there is leading 0, then only allows the situation where only one 0
+                # counted in the recursion, loop stops here.
                 if x == 0:
                     break
 

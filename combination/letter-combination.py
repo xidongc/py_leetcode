@@ -54,7 +54,7 @@ class Solution(object):
         for c in Solution.teleMap[digits[pos]]:
             self.helper(digits,pos+1,tempStr + c)
 
-#             投机取巧
+
 class Solution(object):
     def letterCombinations(self, digits):
         """

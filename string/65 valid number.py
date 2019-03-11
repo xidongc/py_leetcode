@@ -34,6 +34,7 @@ class Solution(object):
 
         # 先去判断是否general符合，遇到e再去判断右边
         # 防止overflow，这样只用检验是否到达最后这个space的位置即可
+        # e右边不能有小数点？左边可以
         s = s.strip() + ' '
         length = len(s) - 1
         i = 0

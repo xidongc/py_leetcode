@@ -47,6 +47,8 @@ class Solution(object):
                         return False
             return left == 0
         parenSet = [s]
+        # 循环很多很多次，第一次减一个，第二次在上一次基础上再减一个，也就是去掉两个
+        # 如果filter出有valid，就返回这层所有valid setpali
         while True:
             valid = list(filter(isValid, parenSet))
             if valid:

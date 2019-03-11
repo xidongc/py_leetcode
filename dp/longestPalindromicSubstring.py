@@ -37,11 +37,12 @@ class Solution(object):
         for i in range(len(s)):
             # 先走大的步，包括了两个点( i和i-curMax-1)，两个条件不同时满足
             # 每次尝试跨越上次的curmax
+            # 共curMax + 2 个点
             if isPalindrome(s, i - curMax - 1, i):
                 start, end = i - curMax - 1, i
                 curMax += 2
+            #     共curMax + 1 个点
             elif isPalindrome(s, i - curMax, i):
-                # ccc
                 start, end = i - curMax, i
                 curMax += 1
         return s[start:end + 1]

@@ -1,11 +1,13 @@
 # 见505，如果放的是tuple进去按x[0]比较
 h=[]                    #定义一个list
 from heapq import *     #引入heapq模块
-h
+h = []
 # []
 heappush(h,5)               #向堆中依次增加数值
 heappush(h,2)
 heappush(h,3)
+
+h[0] #相当于top()
 heappush(h,9)
 h                           #h的值
 # [2, 5, 3, 9]
@@ -39,5 +41,7 @@ heapreplace(a,1)            #1是后来加入的，在1加入之前，a中的最
 # 4
 a
 # [1, 5, 9, 6]
+# nlargest(n, iterable[, key])
+# nsmallest(n, iterable[, key])
 
 # 如果是(1,2),(1,2,3)都是按照顺序比较，现比较第一位，再比较第二位

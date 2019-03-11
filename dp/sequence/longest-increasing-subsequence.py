@@ -25,6 +25,9 @@ class Solution(object):
 # Sol-2: tricky way inspired from:
 # https://leetcode.com/problems/russian-doll-envelopes/discuss/157840/Concise-8-line-Python-O(nlogn)-solution-(easy-to-understand)
 # time complexity: O(n*log(n))
+# (1) if x is larger than all tails, append it, increase the size by 1
+# (2) if tails[i-1] < x <= tails[i], update tails[i]
+
 from bisect import bisect_left
 
 
