@@ -1,6 +1,6 @@
 # 　特别hardeeee
 class Solution(object):
-    def diffWaysToCompute(self, input):
+    def fiiltediffWaysToCompute(self, input):
         """
         :type input: str
         :rtype: List[int]

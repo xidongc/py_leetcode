@@ -34,7 +34,7 @@ class Solution:
             pivot = nums[start]
             left,right = start,end
             while left < right:
-                while nums[right] > pivot and left < right:
+                while nums[right] >= pivot and left < right:
                     right -= 1
                 while nums[left] <= pivot and left < right:
                     left += 1

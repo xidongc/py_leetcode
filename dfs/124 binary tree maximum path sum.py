@@ -11,16 +11,22 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        minValue = -pow(2,32) + 1
-        Solution.res = minValue
-        def helper(root):
+        Solution.res = -(2 ** 32) + 1
+
+        def dfs(root):
             if not root:
-                return minValue
-            left = helper(root.left)
-            right = helper(root.right)
-            Solution.res = max(Solution.res,left,right,left + root.val,right + root.val,root.val, left + right + root.val)
-            return max(root.val,left+root.val,right+root.val)
-        helper(root)
+                return 0
+            left = dfs(root.left)
+            right = dfs(root.right)
+            #             at most one child.
+            max_single = max(max(left, right) + root.val, root.val)
+            #             complete path
+            max_top = max(left + right + root.val, max_single)
+            Solution.res = max(max_top, Solution.res)
+            #             return single path
+            return max_single
+
+        dfs(root)
         return Solution.res
 s = Solution()
 root = TreeNode(-10)
