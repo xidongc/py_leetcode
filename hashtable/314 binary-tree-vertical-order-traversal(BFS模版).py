@@ -17,6 +17,7 @@ class Solution(object):
         res = collections.defaultdict(list)
         queue = [(root,0)]
         for node, pos in queue:
+
             if node:
                 # print(node.val)
                 res[pos].append(node.val)

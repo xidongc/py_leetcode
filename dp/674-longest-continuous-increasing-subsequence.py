@@ -1,3 +1,4 @@
+# czgg
 class Solution(object):
 
     def findLengthOfLCIS(self, nums):
@@ -20,4 +21,24 @@ class Solution(object):
                 dp_array[i % 2] = 1
 
         return max_len
+
+# dup-rabbit
+class Solution(object):
+    def findLengthOfLCIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) <= 1:
+            return len(nums)
+        res = 0
+        cnt = 0
+        for i in range(len(nums)):
+            if i == 0 or nums[i] > nums[i-1]:
+                cnt += 1
+                res = max(cnt,res)
+            else:
+                cnt = 1
+        return res
+
 
