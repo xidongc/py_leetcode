@@ -172,7 +172,3 @@
 
 24. math
     math.sqrt(x), x >= 0 otherwise error message
-
-
-
-

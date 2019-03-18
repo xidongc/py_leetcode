@@ -3,13 +3,6 @@
 # 2. 公共路经法
 # 3. top down，对root左右节点调用hasnode看p，q是在左还是在右，else return root
 
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
 
 class Solution(object):
 
