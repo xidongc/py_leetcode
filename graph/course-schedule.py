@@ -94,7 +94,7 @@ class Solution(object):
 # code in 2rd review:
 class Solution(object):
 
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    def canFinish(self, numCourses, prerequisites) -> bool:
 
         if numCourses == 0:
             return True
@@ -107,15 +107,11 @@ class Solution(object):
         seq = list()
 
         for prerequisite in prerequisites:
-            inDegree[prerequisite[0]] = 0
-            inDegree[prerequisite[1]] = 0
-            neighbors[prerequisite[0]] = []
-            neighbors[prerequisite[1]] = []
-
-        for prerequisite in prerequisites:
             inDegree[prerequisite[1]] = inDegree.get(prerequisite[1], 0) + 1
-            tmp = neighbors.get(prerequisite[0], [])
-            tmp.append(prerequisite[1])
+            inDegree[prerequisite[0]] = inDegree.get(prerequisite[0], 0)
+            neighbors[prerequisite[0]] = neighbors.get(prerequisite[0], [])
+            neighbors[prerequisite[0]].append(prerequisite[1])
+            neighbors[prerequisite[1]] = neighbors.get(prerequisite[1], [])
 
         for k, v in inDegree.items():
             if v == 0:

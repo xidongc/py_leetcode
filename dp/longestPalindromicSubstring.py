@@ -9,7 +9,7 @@ class Solution(object):
 
         length = len(s)
         res = s[0]
-        dp = [[0 for i in range(length)] for i in range(length)]
+        dp = [[0 for _ in range(length)] for _ in range(length)]
         for i in range(length-1,-1,-1):
             for j in range(i+1,length):
                 dp[i][j] = s[i] == s[j] and (dp[i+1][j-1] or j-i <= 2)
