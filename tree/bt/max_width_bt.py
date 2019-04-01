@@ -5,19 +5,30 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
-        q = []
-        q.append(root)
-        ret = []
-        while len(q) > 0:
-            level = []
-            size = len(q)
-            for _ in range(size):
-                val = q.pop(0)
-                level.append(val.val)
-                for i in [val.left, val.right]:
-                    if i.left is not None and i.right is not None:
-                        q.append(i)
-            ret.append(level[:])
-        print(ret)
+
+        # bfs
+
+        # corner case
+        if root is None:
+            return 0
+
+        queue = list()
+        queue.append((root, 0))
+        level = 1
+
+        while len(queue) > 0:
+            length = len(queue)
+            tmp = list()
+            for _ in range(length):
+                curr, x = queue.pop(0)
+                tmp.append(x)
+
+                if curr.left:
+                    queue.append((curr.left, 2*x))
+                if curr.right:
+                    queue.append((curr.right, 2*x+1))
+
+            level = max(level, max(tmp)-min(tmp)+1)
+        return level
 
 

@@ -6,29 +6,30 @@ class Solution(object):
         :rtype: List[List[int]]
         """
 
-        # bfs level traversal
+        ret = list()
 
+        # corner case
         if root is None:
-            return []
+            return ret
 
-        queue = list()
+        queue = list()  # deque in python
         queue.append(root)
-        level = 0
-
-        ret = [[root.val]]
+        level = 1
 
         while len(queue) > 0:
             length = len(queue)
-            tmp = []
-            for i in range(length):
-                ele = queue.pop(0)
-                for x in [ele.left, ele.right]:
-                    if x is not None:
+            reverselist = list()
+            for _ in range(length):
+                tmp = queue.pop(0)
+                for x in [tmp.left, tmp.right]:
+                    if x:
                         queue.append(x)
-                        tmp.append(x.val)
+                if level % 2 == 1:
+                    reverselist.append(tmp.val)
+                else:
+                    reverselist.insert(0, tmp.val)
+
+            ret.append(reverselist[:])
             level += 1
-            if level % 2 == 1:
-                tmp.reverse()
-            if len(tmp) > 0:
-                ret.append(tmp)
+
         return ret

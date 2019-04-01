@@ -259,4 +259,3 @@
     在for循环完整完成后才执行else；如果中途从break跳出，则连else一起跳出。
 
 34. find anagram，用ord(c)在list中做index存times
-
