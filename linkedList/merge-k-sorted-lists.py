@@ -1,39 +1,4 @@
-# Definition for singly-linked list.
-#
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
-class Solution:
-    def mergeKLists(self, lists):
-        """
-        :type lists: List[ListNode]
-        :rtype: ListNode
-        """
-        # cxd 你这个解法超时了哇
-        while len(lists) >= 2:
-            lists.append(self.mergeTwo(lists.pop(), lists.pop()))
-        if len(lists) == 1:
-            return lists[0]
-        else:
-            return None
-
-    def mergeTwo(self, head1, head2):
-        head = p = ListNode(None)
-        while head1 and head2:
-            if head1.val <= head2.val:
-                p.next = head1
-                head1 = head1.next
-            else:
-                p.next = head2
-                head2 = head2.next
-            p = p.next
-        if head1:
-            p.next = head1
-        if head2:
-            p.next = head2
-        return head.next
+from heapq import *
 
 # n:length of each list; k: the number of lists
 # solution 1: brute force: merge 2, then 3, then n
@@ -58,7 +23,9 @@ class Solution:
 #         self.val = x
 #         self.next = None
 
+
 class Solution(object):
+
     def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
@@ -84,7 +51,7 @@ class Solution(object):
         """
         dummy = ListNode(None)
         node = dummy
-        while l1 != None and l2 != None:
+        while l1 is not None and l2 is not None:
             if l1.val < l2.val:
                 node.next = l1
                 l1 = l1.next
@@ -92,16 +59,17 @@ class Solution(object):
                 node.next = l2
                 l2 = l2.next
             node = node.next
-        if l1 != None or l2 != None:
-            if l1 != None:
+        if l1 is not None or l2 is not None:
+            if l1 is not None:
                 node.next = l1
             else:
                 node.next = l2
         return dummy.next
 
-# heapq method
-from heapq import *
+
+# heapq method, python3 will report error due to ListNode not comparable
 class Solution(object):
+
     def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
@@ -110,13 +78,13 @@ class Solution(object):
         h = []
         for l in lists:
             if l:
-                heappush(h,(l.val,l))
+                heappush(h, (l.val, l))
         dummy = ListNode(0)
         cur = dummy
         while h:
             v, node = heappop(h)
             if node.next:
-                heappush(h,(node.next.val, node.next))
+                heappush(h, (node.next.val, node.next))
             cur.next = node
             cur = cur.next
         return dummy.next
