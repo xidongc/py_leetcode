@@ -1,6 +1,7 @@
 class Solution(object):
 
     def removeInvalidParentheses(self, s: str):
+
         if len(s) == 0:
             return [s]
 
@@ -42,6 +43,7 @@ class Solution(object):
 
             for i in range(start, len(s)):
                 if i != start and s[i] == s[i - 1]:
+                    # remove duplicate calculation eg: "(((" or ")))
                     pass
                 elif r > 0 and s[i] is ")":
                     news = s[0:i] + s[i + 1:]

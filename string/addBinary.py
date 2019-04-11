@@ -64,4 +64,3 @@ class Solution(object):
         if carrier == 1:
             result = "1" + result
         return result
-

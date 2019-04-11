@@ -39,3 +39,36 @@ s = Solution()
 print(s.calculate("1-11"))
 
 
+class Solution(object):
+
+    def calculate(self, s: str) -> int:
+        stack = list()
+        num = 0
+        sign = "+"
+
+        for ch in s:
+            if ch.isdigit():
+                num *= 10
+                num += ord(ch)-ord("0")
+            elif sign == '+':
+                stack.append(num)
+                num = 0
+                sign = "+"
+            elif sign == '-':
+                stack.append(-num)
+                num = 0
+                sign = "-"
+            elif ch == '(':
+                stack.append("(")
+            elif ch == ')':
+                tmp = stack.pop()
+                res = 0
+                while tmp is not "(":
+                    stack.pop()
+                    res += tmp
+                stack.append(res)
+                num = 0
+        return sum(stack)
+
+
+
