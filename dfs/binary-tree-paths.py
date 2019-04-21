@@ -36,3 +36,47 @@ class Solution(object):
         curr = [root]
         __dfs__(root, curr)
         return sol
+
+
+# Sol-2 iterative solution with stack
+# Definition for a binary tree node.
+class Solution(object):
+
+    def binaryTreePaths(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[str]
+        """
+        # corner case
+        if root is None:
+            return list()
+
+        parent = dict()
+        parent[root] = None
+
+        stack = list()
+        stack.append(root)
+        output = list()
+
+        while len(stack) > 0:
+            curr = stack.pop()
+
+            if not curr.left and not curr.right:
+                # leaf node here
+                output.append(self.getTreePath(curr, parent))
+
+            if curr.right:
+                stack.append(curr.right)
+                parent[curr.right] = curr
+            if curr.left:
+                stack.append(curr.left)
+                parent[curr.left] = curr
+
+        return output
+
+    def getTreePath(self, curr, parent):
+        tmp = list()
+        while curr:
+            tmp.insert(0, curr.val)
+            curr = parent[curr]
+        return "->".join([str(t) for t in tmp])
