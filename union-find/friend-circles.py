@@ -42,7 +42,7 @@ class Solution(object):
         :type M: List[List[int]]
         :rtype: int
         """
-        self.father = {i:i for i in range(len(M))}
+        self.father = {i: i for i in range(len(M))}
         ans = set()
 
         if len(M) <= 0 or len(M[0]) <= 0:
@@ -70,4 +70,3 @@ class Solution(object):
         root_2 = self.find(x2)
         if root_1 != root_2:
             self.father[root_1] = root_2
-

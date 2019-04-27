@@ -3,7 +3,7 @@ from collections import defaultdict
 
 class Solution(object):
 
-    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+    def verticalTraversal(self, root):
 
         # corner case
         if root is None:

@@ -30,18 +30,6 @@ class Solution(object):
                     self.del_ele_in_heap(right, nums[i-k])
             self.balance(left, right)
 
-            # test, can be removed
-
-            if len(left) == 0:
-                pass
-            elif len(right) == 0:
-                pass
-            elif -left[0] > right[0]:
-                print("&&&")
-                print(num)
-                print(left)
-                print(right)
-
             # add ele
             if len(right) == 0:
                 if len(left) == 0 or num > -left[0]:
@@ -58,7 +46,6 @@ class Solution(object):
             if i >= k-1:
                 result.append(self.get_median(left, right))
 
-        print(result)
         return result
 
     @staticmethod

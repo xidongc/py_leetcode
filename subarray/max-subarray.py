@@ -1,21 +1,17 @@
-class Solution:
+class Solution(object):
+
     def maxSubArray(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        dp = [0 for _ in range(len(nums))]
-        sum = 0
-        for i in range(len(nums)):
-            sum += nums[i]
-            dp[i] = max(nums[i], sum)
-            if sum < 0:
-                sum = 0
+        # corner case
+        if len(nums) == 0:
+            return -1  # not found
 
-        dp.sort(reverse=True)
+        local_max, global_max = nums[0], nums[0]
+        for num in nums:
+            local_max = max(0, local_max) + num
+            global_max = max(global_max, local_max)
 
-        return dp[0]
-
-s = Solution()
-nums = [-2,1,-3,4,-1,2,1,-5,4]
-print(s.maxSubArray(nums))
+        return global_max

@@ -15,10 +15,7 @@ class Solution(object):
         max_len = 0
 
         def in_or_not(x, y):
-            if h > x >= 0 and w > y >= 0:
-                return True
-            else:
-                return False
+            return h > x >= 0 and w > y >= 0
 
         def bfs(i, j, matrix):
             # bfs i, j, and memorize
@@ -48,3 +45,68 @@ class Solution(object):
                 bfs(i, j, matrix)
 
         return max_len
+
+
+# Sol-2 memorize dfs AC, TC: O(n*m)
+class Solution(object):
+
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        # corner case
+        if len(matrix) == 0 or len(matrix[0]) == 0:
+            return 0
+
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        cache = [[1 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+
+        def dfs(i, j, cache):
+            if cache[i][j] != 1:
+                return cache[i][j]
+            for d in directions:
+                x, y = i + d[0], j + d[1]
+                if self.inposition(x, y, len(matrix), len(matrix[0])) and matrix[i][j] < matrix[x][y]:
+                    cache[i][j] = max(cache[i][j], dfs(x, y, cache) + 1)
+            return cache[i][j]
+
+        longest = 0
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                longest = max(longest, dfs(i, j, cache))
+        return longest
+
+    def inposition(self, i, j, m, n):
+        return 0 <= i < m and 0 <= j < n
+
+
+# Sol-3 sorted dp, original idea from hua hua
+class Solution(object):
+
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        dp = [[1 for _ in range(len(matrix[0]))] for _ in range(len(matrix))]
+        positions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        longest = 0
+        tmp = list()
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                tmp.append((matrix[i][j], i, j))
+
+        tmp.sort(key=lambda x: -x[0])
+
+        for t in tmp:
+            (num, i, j) = t
+            for p in positions:
+                x = i + p[0]
+                y = j + p[1]
+                if 0 <= x < len(matrix) and 0 <= y < len(matrix[0]) and matrix[i][j] < matrix[x][y]:
+                    dp[i][j] = max(dp[i][j], dp[x][y] + 1)
+
+            longest = max(longest, dp[i][j])
+        return longest

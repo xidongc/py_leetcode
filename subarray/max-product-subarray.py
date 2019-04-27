@@ -1,34 +1,22 @@
-class Solution:
+class Solution(object):
+
     def maxProduct(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        if not nums:
+        # save both max and min value, sol compared to max subarray
+        if len(nums) == 0:
             return 0
-        elif len(nums) == 1:
-            return nums[0]
-        else:
-            dp_min = [1 for _ in range(len(nums))]
-            dp_max = dp_min[:]
-            dp = dp_min[:]
-            for i in range(len(nums)-1):
-                if i == 0:
-                    dp[i] = dp_max[i] = dp_min[i] = nums[i]
-                dp_max[i+1] = max(dp_max[i]*nums[i+1],
-                                  dp_min[i]*nums[i+1],
-                                  nums[i+1])
-                dp_min[i+1] = min(dp_max[i]*nums[i+1],
-                                  dp_min[i]*nums[i+1],
-                                  nums[i+1])
-                dp[i+1] = max(dp[i], dp_max[i+1])
 
-        return dp[len(nums)-1]
+        maxN = nums[0]
+        minN = nums[0]
+        output = nums[0]
 
-s = Solution()
-nums = [2,3,-2,4]
-print(s.maxProduct(nums))
-
-
-
-
+        for num in nums[1:]:
+            tmpMax = maxN
+            tmpMin = minN
+            maxN = max(tmpMax, tmpMin, 1) * num
+            minN = min(tmpMax, tmpMin, 1) * num
+            output = max(output, maxN)
+        return output
