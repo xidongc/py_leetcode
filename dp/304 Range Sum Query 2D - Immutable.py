@@ -1,7 +1,7 @@
-# 因为为了防止lefttop坐标是（0，0）从而导致计算大小的时候index溢出
-# 所以dp多了一行一列
-# 所以dp的坐标比matrix都要大1
 class NumMatrix(object):
+    # 因为为了防止lefttop坐标是（0，0）从而导致计算大小的时候index溢出
+    # 所以dp多了一行一列
+    # 所以dp的坐标比matrix都要大1
 
     def __init__(self, matrix):
         """
@@ -10,7 +10,7 @@ class NumMatrix(object):
         if not matrix or not matrix[0]:
             return
         self.dp = [[0 for _ in range(len(matrix[0])+1)] for _ in range(len(matrix)+1)]
-        for i in range(1,len(matrix)+1):
+        for i in range(1, len(matrix)+1):
             for j in range(1, len(matrix[0])+1):
                 self.dp[i][j] = self.dp[i][j-1] + self.dp[i-1][j] - self.dp[i-1][j-1] + matrix[i-1][j-1]
 

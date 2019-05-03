@@ -1,6 +1,4 @@
 # Definition for a undirected graph node
-from copy import deepcopy
-
 class UndirectedGraphNode(object):
     def __init__(self, x):
         self.label = x

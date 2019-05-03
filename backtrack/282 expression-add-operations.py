@@ -1,4 +1,5 @@
-class Solution:
+class Solution(object):
+
     def addOperators(self, num, target):
         """
         :type num: str
@@ -6,8 +7,8 @@ class Solution:
         :rtype: List[str]
         """
         if not num:
-            return []
-        res = []
+            return list()
+        res = list()
 
         def dfs(target, num, start, string, tmpSum, lastf):
             if start == len(num):
