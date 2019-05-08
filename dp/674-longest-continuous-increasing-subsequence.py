@@ -42,3 +42,25 @@ class Solution(object):
         return res
 
 
+# mao mao
+class Solution(object):
+
+    def findLengthOfLCIS(self, nums) -> int:
+
+        # corner case
+        if len(nums) == 0:
+            return 0
+
+        i = 1
+        gl_count = 1
+        while i < len(nums):
+            count = 1
+            while i < len(nums) and nums[i] > nums[i - 1]:
+                count += 1
+                i += 1
+            gl_count = max(gl_count, count)
+            while i < len(nums) and nums[i] == nums[i - 1]:
+                i += 1
+            while i < len(nums) and nums[i] < nums[i - 1]:
+                i += 1
+        return gl_count

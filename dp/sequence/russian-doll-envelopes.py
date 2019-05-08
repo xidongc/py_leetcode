@@ -52,7 +52,7 @@ class Solution(object):
         res = [0] * len(envelopes)
         size = 0
         for envelop in envelopes:
-            i,j = 0,size
+            i, j = 0, size
             while i != j:
                 m = (i + j) // 2
                 if envelop[1] > res[m]:
@@ -62,6 +62,8 @@ class Solution(object):
             res[i] = envelop[1]
             size = max(size, i + 1)
         return size
+
+
 s = Solution()
 print(s.maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
 

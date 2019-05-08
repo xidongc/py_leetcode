@@ -22,10 +22,10 @@ class Solution(object):
         self.copyRandom(head)
 
         dummyNode = head.next
-        while head != None:
+        while head:
             tempNode = head.next
             head.next = head.next.next
-            if head.next != None:
+            if head.next:
                 tempNode.next = head.next.next
             head = head.next
         return dummyNode

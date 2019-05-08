@@ -1,11 +1,12 @@
 class Solution(object):
+
     def isOneEditDistance(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: bool
         """
-        for i in range(min(len(s),len(t))):
+        for i in range(min(len(s), len(t))):
             if s[i] != t[i]:
                 # s has the same length as t, so the only possibility is replacing one char in s and t
                 if len(s) == len(t):

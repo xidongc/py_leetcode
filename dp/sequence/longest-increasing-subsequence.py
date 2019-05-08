@@ -38,7 +38,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if not nums or len(nums)==0:
+        if not nums or len(nums) == 0:
             return 0
 
         tail = [nums[0]]

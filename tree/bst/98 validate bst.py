@@ -5,7 +5,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
-class Solution:
+
+class Solution(object):
+
     def isValidBST(self, root):
         """
         :type root: TreeNode
@@ -20,28 +22,52 @@ class Solution:
             return con1 and con2 and con3
 
         return helper(float("-inf"), float("inf"), root)
+
+
 # lmf
 # 中序遍历，1）可以用数组
 #          2）省去数组，用prev记录前一个，因为是严格升序所以右子树最左子肯定比node大
-class Solution:
-    def isValidBST(self, root: 'TreeNode') -> 'bool':
+class Solution(object):
+
+    def isValidBST(self, root):
         Solution.prev = None
+
         def helper(root):
             if not root:
                 return True
             if not helper(root.left):
                 return False
-            if Solution.prev != None and Solution.prev >= root.val:
+            if Solution.prev and Solution.prev >= root.val:
                 return False
             Solution.prev = root.val
             return helper(root.right)
         return helper(root)
 
-root = TreeNode(0)
-root.right = TreeNode(-1)
-s = Solution()
-print(s.isValidBST(root))
-#  5
-# 1  4
-#   3 6
 
+# in order traversal with iterative
+class Solution(object):
+
+    def isValidBST(self, root: TreeNode) -> bool:
+
+        # corner case
+        if not root:
+            return True
+
+        stack = list()
+        curr = root
+        prev = float("-inf")
+
+        while curr:
+            stack.append(curr)
+            curr = curr.left
+
+        while len(stack) > 0:
+            node = stack.pop()
+            if node.val <= prev:
+                return False
+            prev = node.val
+            curr = node.right
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+        return True

@@ -2,7 +2,9 @@
 import random
 import collections
 
-class LoadBalancer:
+
+class LoadBalancer(object):
+
     def __init__(self):
         # do intialization if necessary
         self.cDict = collections.defaultdict(int)
@@ -22,10 +24,7 @@ class LoadBalancer:
         self.cList.append(server_id)
         self.cDict[server_id] = len(self.cList) - 1
 
-
     def remove(self, server_id):
-        # write your code here
-
         # O(1)时间查找，index函数并不行，需要用dict
         pos = self.cDict[server_id]
         lastNum = self.cList[-1]
@@ -41,9 +40,11 @@ class LoadBalancer:
         """
         if self.cList:
             return random.choice(self.cList)
-        # return self.nums[random.randint(0, len(self.nums) - 1)]
+            # return self.nums[random.randint(0, len(self.nums) - 1)]
         else:
             return -1
+
+
 s = LoadBalancer()
 s.add(1)
 s.add(2)
