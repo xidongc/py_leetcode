@@ -13,5 +13,5 @@ class Solution(object):
         right = 1
         for j in range(len(nums) - 1, -1, -1):
             res[j] *= right
-            right = right * nums[j]
+            right *= nums[j]
         return res

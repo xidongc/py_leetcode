@@ -1,7 +1,9 @@
-# 前缀和数组？
-# HashMap
-# 0%any=>0
-class Solution:
+# 前缀和数组
+# HashMap corner case: k == 0
+
+
+class Solution(object):
+
     def checkSubarraySum(self, nums, k):
         """
         :type nums: List[int]
@@ -11,9 +13,10 @@ class Solution:
         if not nums or len(nums) < 2:
             return False
         if k == 0:
+            # corner case
             return any(nums[i] == 0 and nums[i+1] == 0 for i in range(len(nums)-1))
         sum = 0
-        map = {0:-1}
+        map = {0: -1}
         for i in range(len(nums)):
             sum += nums[i]
             r = sum % k
@@ -22,4 +25,3 @@ class Solution:
             elif r in map and i - map[r] > 1:
                 return True
         return False
-
