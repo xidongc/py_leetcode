@@ -33,3 +33,31 @@ class Solution(object):
         dfs(target, num, 0, '', 0, 0)
         return res
 
+
+# xidong's sol:
+class Solution(object):
+
+    def addOperators(self, num: str, target: int) -> List[str]:
+
+        ret = list()
+
+        def dfs(start, expression, val, prev):
+            if start == len(num):
+                if target == val:
+                    ret.append(expression[:])
+                return
+
+            for i in range(start, len(num)):
+                if num[start] == "0" and i > start:
+                    return
+                if start != 0:
+                    dfs(i + 1, expression + "+" + num[start:i + 1], val + int(num[start:i + 1]), int(num[start:i + 1]))
+                    dfs(i + 1, expression + "-" + num[start:i + 1], val - int(num[start:i + 1]), -int(num[start:i + 1]))
+                    dfs(i + 1, expression + "*" + num[start:i + 1], (val - prev) + prev * int(num[start:i + 1]),
+                        prev * int(num[start:i + 1]))
+                else:
+                    dfs(i + 1, expression + num[start:i + 1], int(num[start:i + 1]), int(num[start:i + 1]))
+
+        dfs(0, "", 0, 0)
+        return ret
+
