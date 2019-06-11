@@ -9,7 +9,7 @@ class Solution(object):
         if len(nums) == 0:
             return -1  # not found
 
-        local_max, global_max = nums[0], nums[0]
+        local_max, global_max = float("-inf"), float("-inf")
         for num in nums:
             local_max = max(0, local_max) + num
             global_max = max(global_max, local_max)
