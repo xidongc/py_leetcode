@@ -1,8 +1,5 @@
-import collections
+class Solution(object):
 
-
-
-class Solution:
     def wallsAndGates(self, rooms):
         """
         :type rooms: List[List[int]]
@@ -11,7 +8,7 @@ class Solution:
         if not rooms or not rooms[0]:
             return
         directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-        queue = []
+        queue = list()
         for i in range(len(rooms)):
             for j in range(len(rooms[0])):
                 if rooms[i][j] == 0:
@@ -24,8 +21,3 @@ class Solution:
                 if x >= 0 and x < len(rooms) and y >= 0 and y < len(rooms[0]) and rooms[x][y] == 2147483647:
                     queue.append((x, y))
                     rooms[x][y] = rooms[cur[0]][cur[1]] + 1
-
-
-
-
-

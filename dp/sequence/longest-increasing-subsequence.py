@@ -52,4 +52,3 @@ class Solution(object):
         return len(tail)
 
 # of course, bisect_left is just the bisect, and we could write it via start < end-1 with mid = (end-start)/2 + start
-

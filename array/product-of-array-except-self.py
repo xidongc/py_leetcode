@@ -8,6 +8,7 @@ class Solution(object):
         res = [0] * len(nums)
         res[0] = 1
         for i in range(1, len(nums)):
+
             res[i] = res[i - 1] * nums[i - 1]
 
         right = 1

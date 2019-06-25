@@ -17,7 +17,7 @@ class Solution(object):
                 return
             for i in range(start, len(num)):
                 x = int(num[start:i + 1])
-                #                 Start number has no leading operator
+                # Start number has no leading operator
                 if start == 0:
                     dfs(target, num, i + 1, '' + str(x), x, x)
                 else:

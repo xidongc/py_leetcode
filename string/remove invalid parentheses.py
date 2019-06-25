@@ -59,3 +59,7 @@ class Solution(object):
         if len(ret) == 0:
             ret.append("")
         return ret
+
+s = Solution()
+ret = s.removeInvalidParentheses("(((()))")
+print(ret)

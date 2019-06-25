@@ -1,6 +1,6 @@
 class Solution(object):
 
-    def alienOrder(self, words: List[str]) -> str:
+    def alienOrder(self, words) -> str:
         # corner case
         if len(words) == 0:
             return ""

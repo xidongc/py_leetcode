@@ -35,6 +35,22 @@ class Solution:
             maxRes = max(maxRes,maxTmp)
         return maxRes
 
+
+# sol from xidong
+class Solution(object):
+
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) <= 1:
+            return 0
+
+        buyPrice = prices[0]
+        maxProfit = 0
+        for price in prices[1:]:
+            localProfit = max(price - buyPrice, 0)
+            maxProfit = max(localProfit, maxProfit)
+            buyPrice = min(price, buyPrice)
+        return maxProfit
+
 s = Solution()
 prices = [7,1,5,3,6,4]
 print(s.maxProfit(prices))

@@ -5,14 +5,14 @@ class ListNode:
         self.next = None
 
 
-class Solution:
+class Solution(object):
+
     def reverseKGroup(self, head, k):
         """
         :type head: ListNode
         :type k: int
         :rtype: ListNode
         """
-
         dummy = ListNode(0)
         dummy.next = head
         head = dummy
@@ -23,10 +23,11 @@ class Solution:
         return dummy.next
 
     def findnextK(self, head, k):
-        # n0, n1......nk nm
-        # head = nk
-        # currently head: n0
-
+        """
+        n0, n1......nk nm
+        head = nk
+        currently head: n0
+        """
         nk = head
 
         for _ in range(k):

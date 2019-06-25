@@ -7,7 +7,7 @@
 
 import queue
 
-class Solution:
+class Solution(object):
 
     def isSymmetric(self, root):
         """

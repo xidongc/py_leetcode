@@ -4,6 +4,7 @@
 # 3. top down，对root左右节点调用hasnode看p，q是在左还是在右，else return root
 
 
+
 class Solution(object):
 
     def lowestCommonAncestor(self, root, p, q):

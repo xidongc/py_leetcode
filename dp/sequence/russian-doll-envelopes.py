@@ -1,9 +1,7 @@
 # 354, https://leetcode.com/problems/russian-doll-envelopes/description/
 
-# Sol-1 normal dp with time complexity: O(n^2), LTE
+# Sol-1 normal dp with time complexity: O(n^2), TLE
 # no optimization
-
-
 class Solution(object):
 
     def maxEnvelopes(self, envelopes):
@@ -66,4 +64,3 @@ class Solution(object):
 
 s = Solution()
 print(s.maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]))
-
