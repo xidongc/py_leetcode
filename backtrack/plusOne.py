@@ -1,5 +1,7 @@
 class Solution(object):
-    def plusOne(self, digits: List[int]) -> List[int]:
+
+    def plusOne(self, digits):
+        # corner case
         if len(digits) == 0:
             return list()
 
@@ -13,3 +15,28 @@ class Solution(object):
         if tmp == 0:
             digits.insert(0, 1)
         return digits
+
+
+# Sol-2 by xidong
+class Solution(object):
+
+    def plusOne(self, digits):
+        # corner case
+        if len(digits) == 0:
+            return -1  # not applicable
+
+        carrier = 0
+        ret = list()
+
+        for i, d in enumerate(digits[::-1]):
+            if i == 0:
+                tmp = d + 1 + carrier
+            else:
+                tmp = d + carrier
+            d = tmp % 10
+            carrier = tmp // 10
+            ret.append(d)
+        if carrier == 1:
+            ret.append(1)
+        ret.reverse()
+        return ret
