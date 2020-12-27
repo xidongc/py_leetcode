@@ -16,7 +16,7 @@ class Solution(object):
         for num in nums[1:]:
             tmpMax = maxN
             tmpMin = minN
-            maxN = max(tmpMax, tmpMin, 1) * num
-            minN = min(tmpMax, tmpMin, 1) * num
+            maxN = max(tmpMax * num, tmpMin * num, num)
+            minN = min(tmpMax * num, tmpMin * num, num)
             output = max(output, maxN)
         return output

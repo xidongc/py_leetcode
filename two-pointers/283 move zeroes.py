@@ -1,10 +1,12 @@
 class Solution(object):
 
+    # two pointers
     def moveZeroes(self, nums):
-        # two pointers
+
         """
         Do not return anything, modify nums in-place instead.
         """
+
         p1 = 0
         p2 = 0
         
