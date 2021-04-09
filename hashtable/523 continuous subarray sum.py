@@ -25,3 +25,6 @@ class Solution(object):
             elif r in map and i - map[r] > 1:
                 return True
         return False
+
+s = Solution()
+print(s.checkSubarraySum([0, 0], -1))
