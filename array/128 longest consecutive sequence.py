@@ -6,7 +6,6 @@ class Solution(object):
         """
         if len(nums) <= 1:
             return len(nums)
-        numSet = set()
         res = 1
         while nums:
             num = nums.pop(0)
@@ -21,5 +20,16 @@ class Solution(object):
             res = max(res, next - prev - 1)
         return res
 
-s = Solution()
-s.longestConsecutive([100, 4, 200, 1, 3, 2])
+    # second way to look for only increasing seq
+    def longest_consecutive_2(self, num) -> int:
+        hashset = set(num)
+        max_length = 1
+        for n in num:
+            if n - 1 not in hashset:
+                length = 1
+                curr = n + 1
+                while curr in hashset:
+                    curr = curr + 1
+                    length += 1
+                max_length = max(max_length, length)
+        return max_length

@@ -23,29 +23,20 @@
 #        :rtype List[NestedInteger]
 #        """
 
-
 class NestedIterator(object):
 
+    # Please check the interface and function above
+
     def __init__(self, nestedList):
-        """
-        Initialize your data structure here.
-        :type nestedList: List[NestedInteger]
-        """
         self.stack = list()
         for n in nestedList[::-1]:
             self.stack.append(n)
 
-    def next(self):
-        """
-        :rtype: int
-        """
+    def next(self) -> int:
         if self.hasNext():
             return self.stack.pop()
 
-    def hasNext(self):
-        """
-        :rtype: bool
-        """
+    def hasNext(self) -> bool:
         while len(self.stack) > 0:
             if self.stack[-1].isInteger():
                 return True
