@@ -1,6 +1,6 @@
 class Solution(object):
 
-    def minSubArrayLen(self, s: int, nums: List[int]) -> int:
+    def minSubArrayLen(self, s: int, nums) -> int:
         if len(nums) == 0 or not s:
             return 0
 

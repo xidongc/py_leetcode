@@ -31,5 +31,5 @@ class Solution(object):
 
         helper(root)
         curr.right = dummy.right
-        dummy.right.lef`t = curr
+        dummy.right.left = curr
         return dummy.right

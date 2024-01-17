@@ -14,6 +14,8 @@ class Solution(object):
         :type q: TreeNode
         :rtype: TreeNode
         """
+        # solution with no parent
+
         if not root:
             return None
 
@@ -28,3 +30,15 @@ class Solution(object):
         if not left and not right:
             return None
         return left if left else right
+
+    def lowestCommonAncestorII(self, root, A, B):
+        # solution with parent node
+        visited = set()
+        while A is not root:
+            visited.add(A)
+            A = A.parent
+
+        while B is not root:
+            if B in visited:
+                return B
+            B = B.parent
