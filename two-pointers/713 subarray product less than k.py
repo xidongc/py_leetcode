@@ -1,5 +1,23 @@
 # sliding window
 class Solution(object):
+
+    # solution with template
+    def numSubarrayProductLessThanK(self, nums, k: int) -> int:
+        if k <= 1:
+            return 0
+
+        result, product, i, j = 0, 1, 0, 0
+        while j < len(nums):
+            product *= nums[j]
+
+            while product >= k:
+                product /= nums[i]
+                i += 1
+
+            result += (j - i + 1)
+            j += 1
+        return result
+
     def numSubarrayProductLessThanK(self, nums, k):
         """
         :type nums: List[int]
