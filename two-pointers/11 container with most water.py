@@ -17,10 +17,10 @@ class Solution(object):
                 right -= 1
         return maxRes
 
-# Sol - 2 (solution when 1st review)
-class Solution(object):
-
-    def maxArea(self, height: List[int]) -> int:
+    # Sol - 2 (solution when 1st review)
+    def maxArea_2(self, height) -> int:
+        if not height:
+            return 0
         i = 0
         j = len(height) - 1
         area = 0

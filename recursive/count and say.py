@@ -1,6 +1,7 @@
 class Solution(object):
 
     def countAndSay(self, n: int) -> str:
+        # It's hard to understand the desc, please refer: https://zhuanlan.zhihu.com/p/34300515
         if n <= 0:
             return "0"
         elif n == 1:

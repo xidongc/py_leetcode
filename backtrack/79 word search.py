@@ -23,4 +23,3 @@ class Solution(object):
             res = self.dfs(board, word[1:], i + 1, j) or self.dfs(board, word[1:], i - 1, j) or self.dfs(board,word[1:], i,j + 1) or self.dfs(board, word[1:], i, j - 1)
             board[i][j] = word[0]
         return res
-sub

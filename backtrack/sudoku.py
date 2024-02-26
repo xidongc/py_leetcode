@@ -2,27 +2,24 @@ class Solution(object):
 
     def isValidSudoku(self, board):
 
-        # corner case
-        if len(board) == 0 or len(board[0]) == 0 or len(board) != len(board[0]):
-            return False
+        row = [set([]) for i in range(9)]
+        col = [set([]) for i in range(9)]
+        grid = [set([]) for i in range(9)]
 
-        for i in range(len(board)):
-            rows = set()
-            cols = set()
-            sector = set()
-
-            for j in range(len(board)):
-                row_index = 3 * (i // 3)
-                col_index = 3 * (i % 3)
-
-                if board[i][j] in rows or board[j][i] in cols or \
-                        board[row_index + j // 3][col_index + j % 3] in sector:
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == '.':
+                    continue
+                if board[r][c] in row[r]:
                     return False
-                else:
-                    if board[i][j] != ".":
-                        rows.add(board[i][j])
-                    if board[j][i] != ".":
-                        cols.add(board[j][i])
-                    if board[row_index + j // 3][col_index + j % 3] != ".":
-                        sector.add(board[row_index + j // 3][col_index + j % 3])
+                if board[r][c] in col[c]:
+                    return False
+
+                g = r // 3 * 3 + c // 3
+                if board[r][c] in grid[g]:
+                    return False
+                grid[g].add(board[r][c])
+                row[r].add(board[r][c])
+                col[c].add(board[r][c])
+
         return True

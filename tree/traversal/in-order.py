@@ -5,10 +5,7 @@ class Solution(object):
 
     # recursive
     def inorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        """
+
         ret = list()
         if not root:
             return ret
@@ -24,11 +21,8 @@ class Solution(object):
         helper(root)
         return ret
 
-
-# iterative
-class Solution(object):
-
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
+    # iterative
+    def inorderTraversal_II(self, root: TreeNode):
         if not root:
             return list()
 
